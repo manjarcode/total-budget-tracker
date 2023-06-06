@@ -1,0 +1,23 @@
+{
+  "name": "total-budget-tracker-domain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manjarcode/total-budget-tracker.git"
+  },
+  "author": "manjarcode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manjarcode/total-budget-tracker/issues"
+  },
+  "homepage": "https://github.com/manjarcode/total-budget-tracker#readme",
+  "dependencies": {
+    "typescript": "^5.1.3"
+  }
+}
