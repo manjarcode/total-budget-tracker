@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:domain": "npm run build --workspace=domain"
+    "build:backend": "npm run build --workspace=backend"
   },
   "dependencies": {
     "eslint": "8.41.0",
@@ -17,6 +17,6 @@
     "react-dom": "18.2.0"
   },
   "workspaces": [
-    "domain"
+    "backend"
   ]
 }

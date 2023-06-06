@@ -1,5 +1,5 @@
 {
-  "name": "total-budget-tracker-domain",
+  "name": "total-budget-tracker-backend",
   "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",
