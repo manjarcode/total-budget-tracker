@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:backend && next build",
     "start": "next start",
     "lint": "next lint",
-    "build:backend": "npm run build --workspace=backend",
-    "clander": "node ./backend/lib/index.js"
+    "build:backend": "npm run build --workspace=backend"
   },
   "dependencies": {
     "eslint": "8.41.0",

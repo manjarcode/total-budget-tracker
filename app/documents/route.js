@@ -1,13 +1,10 @@
-
-
 import { NextResponse } from 'next/server'
-import ExcelDocumentRepository from "total-budget-tracker-backend"
- 
-console.log('ExcelDocumentRepository', ExcelDocumentRepository)
+import SaveDocumentUseCase from "total-budget-tracker-backend"
+
 export async function GET() {
-  const repository = new ExcelDocumentRepository()
+  const useCase = new SaveDocumentUseCase()
   const path = `${process.cwd()}/temp/example.xls`
-  const data = await repository.read(path)
+  const data = await useCase.execute({path})
 
   return NextResponse.json({ data })
 }

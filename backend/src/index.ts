@@ -1,2 +1,3 @@
-import ExcelDocumentRepository from "./infrastructure/documents/ExcelDocumentRepository.js"
-export default ExcelDocumentRepository
+import SaveDocumentUseCase from "./application/saveDocumentUseCase.js"
+
+export default SaveDocumentUseCase
