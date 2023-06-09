@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "backend/lib",
+    "outDir": "lib",
     "target": "ESNext",
     "allowJs": true,
     "lib": [
@@ -28,8 +28,7 @@
     ]
   },
   "include": [
-    "backend/src/**/*",
-    ".next/types/**/*.ts"
+    "src/**/*",
   ],
   "exclude": [
     "node_modules"
