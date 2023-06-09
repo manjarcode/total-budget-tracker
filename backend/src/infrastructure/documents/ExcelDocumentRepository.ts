@@ -1,9 +1,13 @@
-import Expense from "../../domain/models/Expense.js";
-import { DocumentRepository } from "./DocumentRepository.js";
+import { injectable } from "inversify";
+import "reflect-metadata";
 import * as xlsx from "xlsx";
 
+import Expense from "../../domain/models/Expense.js";
+import DocumentRepository from "./DocumentRepository.js";
+
+
+@injectable()
 export default class ExcelDocumentRepository implements DocumentRepository {
-  
   read(filePath: string): Promise<Expense[]> {
     const workbook = xlsx.readFile(filePath)
     const worksheet = workbook.Sheets[workbook.SheetNames[0]]

@@ -8,7 +8,7 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "types": [],
+    "types": ["reflect-metadata"],
     "strictNullChecks": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,6 +21,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "plugins": [
       {
         "name": "next"

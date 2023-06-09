@@ -1,6 +1,5 @@
 import Expense from "../../domain/models/Expense"
 
-export interface DocumentRepository {
-
+export default interface DocumentRepository {
   read(filePath: string): Promise<Expense[]>; 
 }

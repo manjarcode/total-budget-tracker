@@ -1,12 +1,8 @@
-import ExcelDocumentRepository from "../infrastructure/documents/ExcelDocumentRepository.js"
+import { injectable } from "inversify";
+import "reflect-metadata";
 
-export default class SaveDocumentUseCase {
-  #repository 
-  constructor() {
-    this.#repository = new ExcelDocumentRepository()
-  }
+import Expense from "../domain/models/Expense.js";
 
-  async execute({ path }) {
-    return await this.#repository.read(path)
-  }
+export default interface SaveDocumentUseCase {
+  execute(path: string): Promise<Expense[]>;
 }

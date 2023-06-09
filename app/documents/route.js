@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server'
-import SaveDocumentUseCase from "total-budget-tracker-backend"
+import container, {Types} from "total-budget-tracker-backend"
 
 export async function GET() {
-  const useCase = new SaveDocumentUseCase()
+
+  console.log('container',container)
+  const usecase = container.get(Types.SaveDocumentUseCase)
+  console.log('usecase',usecase)
+
   const path = `${process.cwd()}/temp/example.xls`
-  const data = await useCase.execute({path})
+  const data = await usecase.execute(path)
 
   return NextResponse.json({ data })
 }
