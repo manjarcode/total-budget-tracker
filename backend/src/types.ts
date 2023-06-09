@@ -1,5 +1,5 @@
 const Types = {
-  DocumentRepository: Symbol("DocumentRepository"),
+  ExcelDocumentRepository: Symbol("ExcelDocumentRepository"),
   SaveDocumentUseCase: Symbol("SaveDocumentUseCase")
 }
 
