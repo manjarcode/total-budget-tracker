@@ -1,10 +1,12 @@
-import RootLayout from "@/app/layout";
-import FileUploader from "@/components/fileUploader";
-import Button from '@mui/material/Button';
+import RootLayout from "@/app/layout"
+import FileUploader from "@/components/fileUploader"
+import Button from '@mui/material/Button'
+import useUploadFile from "@/hooks/useUploadFile"
 
 export default function Homepage() {
+  const { upload } = useUploadFile()
   const handleFileUpload = (file) => {
-    console.log(file)
+    upload(file)
   }
   return <>
     <h1>Welcome y punto</h1>
