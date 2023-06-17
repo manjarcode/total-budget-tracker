@@ -1,17 +1,13 @@
-import RootLayout from "@/app/layout"
-import FileUploader from "@/components/fileUploader"
-import Button from '@mui/material/Button'
-import useUploadFile from "@/hooks/useUploadFile"
+import ExpenseTable from "@/components/expenseTable"
+import useGetExpenses from "@/hooks/useGetExpenses"
+export default function Home() {
 
-export default function Homepage() {
-  const { upload } = useUploadFile()
-  const handleFileUpload = (file) => {
-    upload(file)
-  }
-  return <>
-    <h1>Welcome y punto</h1>
-    <FileUploader onFileUpload={handleFileUpload} />
-    <Button variant="contained">Continuar</Button>
-  </>
-  
+  const {expenses} = useGetExpenses()
+
+  return (
+    <div>
+      <h1>Home</h1>
+      <ExpenseTable expenses={expenses} />
+    </div>
+  )
 }
