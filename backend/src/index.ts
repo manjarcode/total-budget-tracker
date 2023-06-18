@@ -1,12 +1,27 @@
+import { Container } from "inversify";
+import Types from "./types.js"
+export {default as Types} from "./types.js"
+import DynamoDbAdapterFactory from "./infrastructure/dynamoDbAdapter.js"
+import ExpenseRepository from "./infrastructure/expenses/ExpenseRepository.js"
 import ExcelDocumentRepository from "./infrastructure/documents/ExcelDocumentRepository.js"
 import SaveDocumentUseCase from "./application/saveDocumentUseCase.js"
 
-import { Container } from "inversify";
-export {default as Types} from "./types.js"
-import Types from "./types.js"
+let container : Container;
 
-const container = new Container();
-container.bind<ExcelDocumentRepository>(Types.ExcelDocumentRepository).to(ExcelDocumentRepository)
-container.bind<SaveDocumentUseCase>(Types.SaveDocumentUseCase).to(SaveDocumentUseCase)
+function initContainer() {
+  container = new Container()
+  container.bind<DynamoDbAdapterFactory>(Types.DynamoDbAdapterFactory).to(DynamoDbAdapterFactory)
+  container.bind<ExpenseRepository>(Types.ExpenseRepository).to(ExpenseRepository)
+  container.bind<ExcelDocumentRepository>(Types.ExcelDocumentRepository).to(ExcelDocumentRepository)
+  container.bind<SaveDocumentUseCase>(Types.SaveDocumentUseCase).to(SaveDocumentUseCase)  
+}
 
-export default container;
+
+export default function containerInstance()  {
+  if (!container) {
+    initContainer()
+  }
+
+  return container
+}
+

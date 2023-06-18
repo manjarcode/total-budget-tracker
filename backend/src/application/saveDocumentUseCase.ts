@@ -1,17 +1,27 @@
 import { injectable, inject } from "inversify"
 import "reflect-metadata"
 import Types from "../types.js"
+import ExpenseRepository from "../infrastructure/expenses/ExpenseRepository.js"
+import ExcelDocumentRepository from "../infrastructure/documents/ExcelDocumentRepository.js"
+
 
 @injectable()
 export default class SaveDocumentUseCase {
-  #repository 
+  private excelRepository : ExcelDocumentRepository
+  private expenseRepository : ExpenseRepository
+
   constructor(
-    @inject(Types.ExcelDocumentRepository) repository
+    @inject(Types.ExcelDocumentRepository) excelRepository,
+    @inject(Types.ExpenseRepository) expenseRepository, 
   ) {
-    this.#repository = repository
+    this.excelRepository = excelRepository
+    this.expenseRepository = expenseRepository
   }
 
   async execute(path: string) {
-    return await this.#repository.read(path)
+    const expenses =  await this.excelRepository.read(path)    
+    await this.expenseRepository.save(expenses)
+
+    return expenses   
   }
 }
