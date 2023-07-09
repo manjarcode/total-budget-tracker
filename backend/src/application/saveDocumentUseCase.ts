@@ -11,8 +11,8 @@ export default class SaveDocumentUseCase {
   private expenseRepository : ExpenseRepository
 
   constructor(
-    @inject(Types.ExcelDocumentRepository) excelRepository,
-    @inject(Types.ExpenseRepository) expenseRepository, 
+    @inject(Types.Repositories.ExcelDocumentRepository) excelRepository,
+    @inject(Types.Repositories.ExpenseRepository) expenseRepository, 
   ) {
     this.excelRepository = excelRepository
     this.expenseRepository = expenseRepository

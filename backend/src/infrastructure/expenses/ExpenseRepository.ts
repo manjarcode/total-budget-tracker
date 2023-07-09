@@ -6,7 +6,7 @@ import Types from "../../types.js"
 @injectable()
 export default class ExpenseRepository {
   static tableName = 'tbt-expenses'
-  client: any
+  private client: any
 
   constructor(
     @inject(Types.DynamoDbAdapterFactory) dynamoDbAdapterFactory
