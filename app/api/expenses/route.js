@@ -5,7 +5,8 @@ export async function GET() {
   const usecase = containerInstance().get(Types.UseCases.SaveDocumentUseCase)
 
   const path = `${process.cwd()}/temp/example.xls`
-  const data = await usecase.execute(path)
+  const reportId = 'bdf0dcc6-2f06-4cac-8dec-66a63fb96396'
+  const data = await usecase.execute(reportId, path)
 
   return NextResponse.json({ data })
 }

@@ -18,9 +18,9 @@ export default class SaveDocumentUseCase {
     this.expenseRepository = expenseRepository
   }
 
-  async execute(path: string) {
+  async execute(reportId: string, path: string) {
     const expenses =  await this.excelRepository.read(path)    
-    await this.expenseRepository.save(expenses)
+    await this.expenseRepository.save(reportId, expenses)
 
     return expenses   
   }

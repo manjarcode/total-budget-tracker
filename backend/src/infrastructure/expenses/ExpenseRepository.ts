@@ -14,15 +14,18 @@ export default class ExpenseRepository {
     this.client = dynamoDbAdapterFactory.instance(ExpenseRepository.tableName)
   }
 
-  save(expenses: Expense[]) : Promise<void> {
+  save(reportId: string, expenses: Expense[]) : Promise<void> {
+    let line = 0
     for (const expense of expenses) {
-      this.client.add(expense)
+      const hydratedExpense = { reportId, line , ...expense,  }
+      this.client.add(hydratedExpense)
+      line++
     }
     return Promise.resolve()
   }
 
 
-  list() : Promise<Expense[]> { 
-    return this.client.list()
+  list(reportId: string) : Promise<Expense[]> { 
+    return this.client.query("reportId", reportId)
   }
 }
