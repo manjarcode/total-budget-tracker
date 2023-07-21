@@ -1,13 +1,28 @@
-import ExpenseTable from "@/components/expenseTable"
-import useGetExpenses from "@/hooks/useGetExpenses"
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import Link from 'next/link'
+
+import useListReports from '@/hooks/useListReports'
+
 export default function Home() {
 
-  const {expenses} = useGetExpenses()
+  const reports = useListReports()
+
+  const curryReportId = (reportId) => {
+    return `/report/${reportId}`
+  }
 
   return (
-    <div>
-      <h1>Home</h1>
-      <ExpenseTable expenses={expenses} />
-    </div>
+    <Box>
+      <List>
+        {reports.map(report => (
+          <ListItem key={report.id}>
+            <Link href={curryReportId(report.id)}>{report.name}</Link>
+          </ListItem>
+          ))
+        }
+      </List>
+    </Box>
   )
 }

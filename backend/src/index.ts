@@ -7,6 +7,7 @@ import ExcelDocumentRepository from "./infrastructure/documents/ExcelDocumentRep
 import SaveDocumentUseCase from "./application/saveDocumentUseCase.js"
 import ReportRepository from "./infrastructure/reports/ReportRepository.js";
 import ListReportsUseCase from "./application/listReportsUseCase.js";
+import GetReportUseCase from "./application/getReportUseCase.js";
 
 let container : Container;
 
@@ -18,6 +19,7 @@ function initContainer() {
   container.bind<SaveDocumentUseCase>(Types.UseCases.SaveDocumentUseCase).to(SaveDocumentUseCase)
   container.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportRepository)
   container.bind<ListReportsUseCase>(Types.UseCases.ListReportsUseCase).to(ListReportsUseCase)
+  container.bind<GetReportUseCase>(Types.UseCases.GetReportUseCase).to(GetReportUseCase)
 }
 
 

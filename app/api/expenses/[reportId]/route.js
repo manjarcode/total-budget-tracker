@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import containerInstance, {Types} from "total-budget-tracker-backend"
 
-export async function GET() {
+export async function POST() {
   const usecase = containerInstance().get(Types.UseCases.SaveDocumentUseCase)
 
   const path = `${process.cwd()}/temp/example.xls`
@@ -9,4 +9,15 @@ export async function GET() {
   const data = await usecase.execute(reportId, path)
 
   return NextResponse.json({ data })
+}
+
+
+export async function GET(request, {params}) {
+  const {reportId} = params
+
+  const usecase = containerInstance().get(Types.UseCases.GetReportUseCase)
+
+  const data = await usecase.execute(reportId)
+
+  return NextResponse.json(data )
 }

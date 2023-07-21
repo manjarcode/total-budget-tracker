@@ -15,6 +15,6 @@ export default class ReportRepository {
   }
 
   list() : Promise<Report[]> { 
-    return this.client.list()
+    return this.client.scan()
   }
 }

@@ -7,6 +7,7 @@ const Types = {
   UseCases: {
     ListReportsUseCase: Symbol("ListReportsUseCase"),
     SaveDocumentUseCase: Symbol("SaveDocumentUseCase"),
+    GetReportUseCase: Symbol("GetReportUseCase"),
   },
   DynamoDbAdapterFactory: Symbol("DynamoDbAdapter"),
 }
