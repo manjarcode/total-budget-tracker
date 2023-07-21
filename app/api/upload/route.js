@@ -12,8 +12,7 @@ export async function POST(req, res) {
     }
 
     const uploadedFile = files.file;
-
-    console.log('uploadedFile', uploadedFile)
+ 
     return NextResponse.json(uploadedFile)
   });
 }

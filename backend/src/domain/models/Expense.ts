@@ -1,15 +1,17 @@
-import { v4 as uuid } from 'uuid'
-
 export default class Expense {
-  id: string
+  reportId: string
+  line: number
   description: string
   amount: number
   date: Date
+  read: boolean
 
-  constructor(description: string, amount: number, date: Date) {
-    this.id = uuid()
+  constructor(reportId: string, line: number, description: string, amount: number, date: Date) {
+    this.reportId = reportId
+    this.line = line
     this.description = description
     this.amount = amount
     this.date = date
+    this.read = false
   }
 }

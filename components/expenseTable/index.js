@@ -8,8 +8,11 @@ const ExpenseTable = ({ expenses }) => {
     { field: 'date', headerName: 'Date', flex: 1 },
   ];
 
+  const getRowId = (row) => `${row.reportId}-${row.line}`
   return (
-      <DataGrid columns={columns} rows={expenses} />
+      <DataGrid 
+      getRowId={getRowId}
+      columns={columns} rows={expenses} />
   );
 };
 
