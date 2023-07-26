@@ -25,4 +25,11 @@ export default class ExpenseRepository {
   list(reportId: string) : Promise<Expense[]> { 
     return this.client.query("reportId", reportId)
   }
+
+  async update(expense: Expense) {
+    const partitionKey = "reportId"
+    const sortKey = "line"
+
+    return await this.client.update(expense, partitionKey, sortKey)    
+  }
 }

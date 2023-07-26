@@ -8,6 +8,7 @@ const Types = {
     ListReportsUseCase: Symbol("ListReportsUseCase"),
     SaveDocumentUseCase: Symbol("SaveDocumentUseCase"),
     GetReportUseCase: Symbol("GetReportUseCase"),
+    CategorizeExpenseUseCase: Symbol("CategorizeExpenseUseCase"),
   },
   DynamoDbAdapterFactory: Symbol("DynamoDbAdapter"),
 }
