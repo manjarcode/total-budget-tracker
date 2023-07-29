@@ -1,25 +1,26 @@
-import React, { useState } from 'react'
-import TextField from '@mui/material/TextField'
+import React, {useState} from 'react'
+
+import {Box} from '@mui/material'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { Box } from '@mui/material'
 
-const CategorizeForm = ({ expense, isOpen, onSave, onClose }) => {
-  const [category, setCategory] = useState(expense.category || '');
+const CategorizeForm = ({expense, isOpen, onSave, onClose}) => {
+  const [category, setCategory] = useState(expense.category || '')
   const [subcategory, setSubcategory] = useState(expense.subcategory || '')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault()
 
     const updatedExpense = {
       ...expense,
       category,
-      subcategory,
-    };
+      subcategory
+    }
 
     onSave(updatedExpense)
 
@@ -37,32 +38,26 @@ const CategorizeForm = ({ expense, isOpen, onSave, onClose }) => {
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <Box>
-            <Typography variant="body1"> 
-              {`Fecha: ${date}`}
-            </Typography>
+            <Typography variant="body1">{`Fecha: ${date}`}</Typography>
           </Box>
           <Box>
-            <Typography variant="body1">
-              {description}
-            </Typography>
+            <Typography variant="body1">{description}</Typography>
           </Box>
           <Box>
-            <Typography variant="body1">
-              {`Cantidad: ${amount}`}
-            </Typography>
-          </Box> 
+            <Typography variant="body1">{`Cantidad: ${amount}`}</Typography>
+          </Box>
           <Box>
             <TextField
               label="Categoría"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}            
+              onChange={e => setCategory(e.target.value)}
             />
           </Box>
           <Box>
             <TextField
               label="Subcategoría"
               value={subcategory}
-              onChange={(e) => setSubcategory(e.target.value)}          
+              onChange={e => setSubcategory(e.target.value)}
             />
           </Box>
           <DialogActions>

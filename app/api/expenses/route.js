@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
-import containerInstance, {Types} from "total-budget-tracker-backend"
-import { v4 as uuid } from 'uuid'
+import {NextResponse} from 'next/server'
+import containerInstance, {Types} from 'total-budget-tracker-backend'
+import {v4 as uuid} from 'uuid'
 
 export async function POST(request) {
   const dto = await request.json()
@@ -13,9 +13,10 @@ export async function POST(request) {
   return NextResponse.json(data)
 }
 
-
 export async function PUT(request) {
-  const useCase = containerInstance().get(Types.UseCases.CategorizeExpenseUseCase)
+  const useCase = containerInstance().get(
+    Types.UseCases.CategorizeExpenseUseCase
+  )
 
   const expenseDto = await request.json()
   await useCase.execute(expenseDto)

@@ -1,22 +1,23 @@
-import { theme } from "./theme.js"
-import { ThemeProvider, CssBaseline } from "@mui/material"
-import { CacheProvider, EmotionCache } from "@emotion/react"
-import createEmotionCache from "./emotionCache.js"
+import {CacheProvider, EmotionCache} from '@emotion/react'
+import {CssBaseline, ThemeProvider} from '@mui/material'
 
-const clientSideEmotionCache = createEmotionCache();
+import createEmotionCache from './emotionCache.js'
+import {theme} from './theme.js'
+
+const clientSideEmotionCache = createEmotionCache()
 export default function RootLayout(props) {
   const {children, emotionCache = clientSideEmotionCache} = props
   return (
     <html lang="en">
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}> 
+        <ThemeProvider theme={theme}>
           <body>
             nepe hermano
             <CssBaseline />
-            {children}        
+            {children}
           </body>
-        </ThemeProvider> 
-       </CacheProvider>
+        </ThemeProvider>
+      </CacheProvider>
     </html>
   )
 }

@@ -1,8 +1,8 @@
 export default function useSaveExpense() {
-  const saveExpense = (expense) => {
+  const saveExpense = expense => {
     const url = `/api/expenses`
     return fetch(url, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },

@@ -1,30 +1,29 @@
-import { useState, useEffect} from "react";
+import {useEffect, useState} from 'react'
 
 export default function useGetExpensesByReportId(reportId) {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState([])
 
   function transformDate(expense) {
-    const { date, ...rest } = expense
+    const {date, ...rest} = expense
     const dateObj = new Date(date)
 
-    const dto = { ...rest, date: dateObj }
+    const dto = {...rest, date: dateObj}
     return dto
   }
 
-  useEffect(() => {
+useEffect(() => {
     const hasReportId = reportId !== undefined
     const url = `/api/expenses/${reportId}`
     if (!hasReportId) {
       return
     }
     fetch(url, {
-      method: "GET"    
+      method: 'GET'
     })
-    .then(resp => resp.json())
-    .then(resp => resp.map(transformDate))
-    .then(resp => setExpenses(resp))
+      .then(resp => resp.json())
+      .then(resp => resp.map(transformDate))
+      .then(resp => setExpenses(resp))
   }, [reportId])
 
-
-  return { expenses }
+  return {expenses}
 }
