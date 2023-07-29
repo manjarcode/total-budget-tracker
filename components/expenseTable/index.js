@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import useSaveExpense from '../../hooks/useSaveExpense.js'
 
+import style from './index.module.css'
+import { Box } from '@mui/material';
+
 const ExpenseTable = ({ expenses, categorizeForm: CategorizeForm }) => {
   
   const [showForm, setShowForm] = useState(false)
@@ -10,14 +13,27 @@ const ExpenseTable = ({ expenses, categorizeForm: CategorizeForm }) => {
   const isModalOpen = Boolean(updatingExpense)
 
   const columns = [
-    { field: 'description', headerName: 'Description', flex: 8 },
-    { field: 'amount', headerName: 'Amount', flex: 1 },
-    { field: 'date', headerName: 'Date', flex: 1 },
+    { 
+      field: 'date', 
+      headerName: 'Fecha', 
+      flex: 1, 
+      valueGetter: params => params.value.toLocaleDateString('en-GB')      
+    },
+    { 
+      field: 'description', 
+      headerName: 'Descripción', 
+      flex: 8 
+    },
+    { 
+      field: 'amount', 
+      headerName: 'Cantidad', 
+      flex: 1 
+    },
   ];
 
   const { saveExpense } = useSaveExpense()
 
-  const getRowId = (row) => `${row.reportId}-${row.line}`
+  const getRowId = (row) => `${row.reportId}-${row.date}`
 
   const onRowClick = (params) => {
     setShowForm(true)
@@ -34,7 +50,7 @@ const ExpenseTable = ({ expenses, categorizeForm: CategorizeForm }) => {
   }
 
   return (
-    <>
+    <Box class ={style.container}>
       { showForm && 
         <CategorizeForm 
           expense={updatingExpense}
@@ -43,12 +59,13 @@ const ExpenseTable = ({ expenses, categorizeForm: CategorizeForm }) => {
           onClose={handleClose}
         />          
       }
+      
       <DataGrid 
         getRowId={getRowId}
         onRowClick={onRowClick}
         columns={columns} rows={expenses} 
       />
-    </>
+    </Box>
   );
 };
 

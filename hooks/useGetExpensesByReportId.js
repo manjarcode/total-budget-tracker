@@ -3,6 +3,14 @@ import { useState, useEffect} from "react";
 export default function useGetExpensesByReportId(reportId) {
   const [expenses, setExpenses] = useState([]);
 
+  function transformDate(expense) {
+    const { date, ...rest } = expense
+    const dateObj = new Date(date)
+
+    const dto = { ...rest, date: dateObj }
+    return dto
+  }
+
   useEffect(() => {
     const hasReportId = reportId !== undefined
     const url = `/api/expenses/${reportId}`
@@ -13,7 +21,8 @@ export default function useGetExpensesByReportId(reportId) {
       method: "GET"    
     })
     .then(resp => resp.json())
-    .then(response => setExpenses(response))
+    .then(resp => resp.map(transformDate))
+    .then(resp => setExpenses(resp))
   }, [reportId])
 
 

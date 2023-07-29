@@ -29,9 +29,10 @@ export default class ExpenseRepository {
   }
 
   async list(reportId: string) : Promise<Expense[]> { 
-    const expenses = await this.client.query("reportId", reportId)
-    const entities = expenses.map(this.mapper.toDomain)
+    const records = await this.client.query("reportId", reportId)
     
+    const entities = records.map(this.mapper.toDomain)
+  
     return entities
   }
 
