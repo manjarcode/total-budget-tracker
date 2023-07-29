@@ -18,9 +18,12 @@ export default class ExcelDocumentRepository {
     for (let i = initialRow; i < rows.length; i++) {
       
       const row = rows[i]
+
       const description = row[3]
       const amount = parseFloat(row[6])
-      const date = new Date(row[0])
+      const days = row[0]
+      const date = new Date(0, 0, days - 1)
+ 
       const line = i-initialRow
       // Crear una nueva instancia de Expense y agregarla al arreglo
       const expense = new Expense(reportId,line, description, amount, date)

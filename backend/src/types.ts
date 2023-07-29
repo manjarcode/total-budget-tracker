@@ -1,4 +1,7 @@
 const Types = {
+  Mappers: {
+    ExpenseMapper: Symbol("ExpenseMapper"),
+  },
   Repositories: {
     ReportRepository: Symbol("ReportRepository"),
     ExcelDocumentRepository: Symbol("ExcelDocumentRepository"),

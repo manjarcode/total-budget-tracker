@@ -2,12 +2,13 @@ import { NextResponse } from 'next/server'
 import containerInstance, {Types} from "total-budget-tracker-backend"
 import { v4 as uuid } from 'uuid'
 
-export async function POST() {
+export async function POST(request) {
+  const dto = await request.json()
+  const {reportId, name, yermon} = dto
   const useCase = containerInstance().get(Types.UseCases.SaveDocumentUseCase)
 
   const path = `${process.cwd()}/temp/example.xls`
-  const reportId = uuid()
-  const data = await useCase.execute(reportId, path)
+  const data = await useCase.execute(reportId, path, name, yermon)
 
   return NextResponse.json(data)
 }

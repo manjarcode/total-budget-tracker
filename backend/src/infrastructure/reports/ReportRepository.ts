@@ -14,6 +14,10 @@ export default class ReportRepository {
     this.client = dynamoDbAdapterFactory.instance(ReportRepository.tableName)
   }
 
+  async add(reportId: string, name: string, yermon: string) {
+    return await this.client.add({id: reportId, name, yermon})
+  }
+
   list() : Promise<Report[]> { 
     return this.client.scan()
   }

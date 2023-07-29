@@ -1,5 +1,5 @@
 import Factory from 'dynamodb-adapter'
-import {  injectable } from "inversify"
+import { injectable } from "inversify"
 import "reflect-metadata"
 import process from "process"
 
