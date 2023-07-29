@@ -1,15 +1,13 @@
 export default class Expense {
   reportId: string
-  line: number
   description: string
   amount: number
   date: Date
 
-  constructor(reportId: string, line: number, description: string, amount: number, date: Date) {
+  constructor(reportId: string, date: Date, description: string, amount: number) {
     this.reportId = reportId
-    this.line = line
+    this.date = date
     this.description = description
     this.amount = amount
-    this.date = date
   }
 }

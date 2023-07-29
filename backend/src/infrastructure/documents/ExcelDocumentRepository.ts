@@ -6,6 +6,28 @@ import Expense from "../../domain/models/Expense.js";
 
 @injectable()
 export default class ExcelDocumentRepository {
+  private givenTimes: number[]
+
+  constructor() {
+    this.givenTimes = []
+  }
+
+
+  generateUniqueDate(days): Date {
+    const date = new Date(0, 0, days - 1)
+
+    let time = date.getTime()
+
+    while (this.givenTimes.includes(time)) {
+      date.setSeconds(date.getSeconds() + 1)
+      time = date.getTime()
+    }
+
+    this.givenTimes.push(time)
+
+    return date
+  }
+
   read(reportId:string, filePath: string): Promise<Expense[]> {
     const workbook = xlsx.readFile(filePath)
     const worksheet = workbook.Sheets[workbook.SheetNames[0]]
@@ -14,7 +36,7 @@ export default class ExcelDocumentRepository {
     const expenses: Expense[] = [];
 
     const initialRow = 6
-    // Iterar sobre las filas y crear instancias de Expense
+
     for (let i = initialRow; i < rows.length; i++) {
       
       const row = rows[i]
@@ -22,11 +44,9 @@ export default class ExcelDocumentRepository {
       const description = row[3]
       const amount = parseFloat(row[6])
       const days = row[0]
-      const date = new Date(0, 0, days - 1)
- 
-      const line = i-initialRow
-      // Crear una nueva instancia de Expense y agregarla al arreglo
-      const expense = new Expense(reportId,line, description, amount, date)
+      const date = this.generateUniqueDate(days)
+      
+      const expense = new Expense(reportId, date, description, amount)
       expenses.push(expense)
     }
 

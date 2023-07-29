@@ -5,25 +5,22 @@ import ExpenseRecord from './ExpenseRecord';
 @injectable()
 export default class ExpenseMapper {
   constructor() {}
-  
+
   toRecord(expense: Expense): ExpenseRecord {
-    console.log('toRecord, date:', expense.date)
     return new ExpenseRecord(
       expense.reportId,
-      expense.line,
+      expense.date.getTime(),
       expense.description,
       expense.amount,
-      expense.date.getTime()
     )
   }
 
   toDomain(expenseRecord: ExpenseRecord): Expense {
     return new Expense(
       expenseRecord.reportId,
-      expenseRecord.line,
+      new Date(expenseRecord.date),
       expenseRecord.description,
       expenseRecord.amount,
-      new Date(expenseRecord.date)
     )
   }
 }

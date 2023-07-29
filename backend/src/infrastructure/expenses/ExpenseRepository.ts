@@ -37,8 +37,10 @@ export default class ExpenseRepository {
 
   async update(expense: Expense) {
     const partitionKey = "reportId"
-    const sortKey = "line"
+    const sortKey = "date"
 
-    return await this.client.update(expense, partitionKey, sortKey)    
+    const record = this.mapper.toRecord(expense)
+
+    return await this.client.update(record, partitionKey, sortKey)    
   }
 }
