@@ -10,6 +10,8 @@ import ListReportsUseCase from "./application/listReportsUseCase.js"
 import GetReportUseCase from "./application/getReportUseCase.js"
 import CategorizeExpenseUseCase from "./application/categorizeExpenseUseCase.js"
 import ExpenseMapper from "./infrastructure/expenses/ExpenseMapper.js"
+import CategoryRepository from "./infrastructure/categories/CategoryRepository.js";
+import ListCategoriesUseCase from "./application/listCategoriesUseCase.js";
 
 let container : Container;
 
@@ -21,9 +23,11 @@ function initContainer() {
   container.bind<ExcelDocumentRepository>(Types.Repositories.ExcelDocumentRepository).to(ExcelDocumentRepository)
   container.bind<SaveDocumentUseCase>(Types.UseCases.SaveDocumentUseCase).to(SaveDocumentUseCase)
   container.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportRepository)
+  container.bind<CategoryRepository>(Types.Repositories.CategoryRepository).to(CategoryRepository)
   container.bind<ListReportsUseCase>(Types.UseCases.ListReportsUseCase).to(ListReportsUseCase)
   container.bind<GetReportUseCase>(Types.UseCases.GetReportUseCase).to(GetReportUseCase)
   container.bind<CategorizeExpenseUseCase>(Types.UseCases.CategorizeExpenseUseCase).to(CategorizeExpenseUseCase)
+  container.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCategoriesUseCase)
 }
 
 

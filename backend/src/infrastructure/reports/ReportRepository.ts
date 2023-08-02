@@ -11,7 +11,8 @@ export default class ReportRepository {
   constructor(
     @inject(Types.DynamoDbAdapterFactory) dynamoDbAdapterFactory
   ) {
-    this.client = dynamoDbAdapterFactory.instance(ReportRepository.tableName)
+    const partitionKey = 'id'
+    this.client = dynamoDbAdapterFactory.instance(ReportRepository.tableName, partitionKey)
   }
 
   async add(reportId: string, name: string, yermon: string) {

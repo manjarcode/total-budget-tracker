@@ -4,12 +4,15 @@ import {Box} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 
 import useSaveExpense from '../../hooks/useSaveExpense.js'
+import useListCategories from '@/hooks/useListCategories'
 
 import style from './index.module.css'
 
 const ExpenseTable = ({expenses, categorizeForm: CategorizeForm}) => {
   const [showForm, setShowForm] = useState(false)
   const [updatingExpense, setUpdatingExpense] = useState(null)
+  
+  const categories = useListCategories()
 
   const isModalOpen = Boolean(updatingExpense)
 
@@ -51,9 +54,10 @@ const ExpenseTable = ({expenses, categorizeForm: CategorizeForm}) => {
   }
 
   return (
-    <Box class={style.container}>
+    <Box className={style.container}>
       {showForm && (
         <CategorizeForm
+          categories={categories}
           expense={updatingExpense}
           onSave={handleSave}
           isOpen={isModalOpen}

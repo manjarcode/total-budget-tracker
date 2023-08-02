@@ -8,8 +8,9 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import CategorizeSelector from '../categorySelector/index.js'
 
-const CategorizeForm = ({expense, isOpen, onSave, onClose}) => {
+const CategorizeForm = ({expense, isOpen, onSave, onClose, categories}) => {
   const [category, setCategory] = useState(expense.category || '')
   const [subcategory, setSubcategory] = useState(expense.subcategory || '')
 
@@ -47,10 +48,10 @@ const CategorizeForm = ({expense, isOpen, onSave, onClose}) => {
             <Typography variant="body1">{`Cantidad: ${amount}`}</Typography>
           </Box>
           <Box>
-            <TextField
-              label="Categoría"
+            <CategorizeSelector 
+              categories={categories}
               value={category}
-              onChange={e => setCategory(e.target.value)}
+              onChange={setCategory}
             />
           </Box>
           <Box>

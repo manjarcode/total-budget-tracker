@@ -14,7 +14,9 @@ export default class ExpenseRepository {
     @inject(Types.DynamoDbAdapterFactory) dynamoDbAdapterFactory,
     @inject(Types.Mappers.ExpenseMapper) expenseMapper
   ) {
-    this.client = dynamoDbAdapterFactory.instance(ExpenseRepository.tableName)
+    const partitionKey = 'reportId'
+    const sortKey = 'date'
+    this.client = dynamoDbAdapterFactory.instance(ExpenseRepository.tableName, partitionKey, sortKey)
     this.mapper = expenseMapper
   }
 
@@ -29,7 +31,7 @@ export default class ExpenseRepository {
   }
 
   async list(reportId: string) : Promise<Expense[]> { 
-    const records = await this.client.query("reportId", reportId)
+    const records = await this.client.query(reportId)
     
     const entities = records.map(this.mapper.toDomain)
   
@@ -37,11 +39,7 @@ export default class ExpenseRepository {
   }
 
   async update(expense: Expense) {
-    const partitionKey = "reportId"
-    const sortKey = "date"
-
     const record = this.mapper.toRecord(expense)
-
-    return await this.client.update(record, partitionKey, sortKey)    
+    return await this.client.update(record)
   }
 }

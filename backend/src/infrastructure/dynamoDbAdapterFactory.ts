@@ -17,8 +17,14 @@ export default class DynamoDbAdapterFactory {
     this.factory = Factory
   }
 
-  instance(tableName) {
-    const client = this.factory.create(tableName, DynamoDbAdapterFactory.CONFIG)
+  instance(tableName, partitionKey, sortKey) {
+    const client = this.factory.create(
+      tableName, 
+      partitionKey, 
+      sortKey, 
+      DynamoDbAdapterFactory.CONFIG
+    )
+    
     return client
   }
 }

@@ -19,6 +19,8 @@ export async function PUT(request) {
   )
 
   const expenseDto = await request.json()
+  expenseDto.date = new Date(expenseDto.date)
+
   await useCase.execute(expenseDto)
   return NextResponse.json({})
 }
