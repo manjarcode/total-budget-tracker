@@ -12,7 +12,8 @@ export default class ExpenseMapper {
       expense.date.getTime(),
       expense.description,
       expense.amount,
-      expense.category
+      expense.category,
+      expense.subcategory
     )
   }
 
@@ -22,7 +23,8 @@ export default class ExpenseMapper {
       new Date(expenseRecord.date),
       expenseRecord.description,
       expenseRecord.amount,
-      expenseRecord.category
+      expenseRecord.category,
+      expenseRecord.subcategory
     )
   }
 }

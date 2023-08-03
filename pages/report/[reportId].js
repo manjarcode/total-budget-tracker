@@ -7,11 +7,14 @@ import useGetExpensesByReportId from '@/hooks/useGetExpensesByReportId'
 export default function ReportById() {
   const router = useRouter()
   const reportId = router.query.reportId
-  const {expenses} = useGetExpensesByReportId(reportId)
+  const {expenses, refetch} = useGetExpensesByReportId(reportId)
 
   return (
-    <div>
-      <ExpenseTable expenses={expenses} categorizeForm={CategorizeForm} />
-    </div>
+    <ExpenseTable 
+      expenses={expenses} 
+      categorizeForm={CategorizeForm} 
+      onChange={() => {
+        refetch()
+      }} />
   )
 }

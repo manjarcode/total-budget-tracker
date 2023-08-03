@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 
 import {Box} from '@mui/material'
 import Button from '@mui/material/Button'
@@ -9,10 +9,19 @@ import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import CategorizeSelector from '../categorySelector/index.js'
+import SubcategorySelector from '../subcategorySelector/index.js'
 
 const CategorizeForm = ({expense, isOpen, onSave, onClose, categories}) => {
   const [category, setCategory] = useState(expense.category || '')
   const [subcategory, setSubcategory] = useState(expense.subcategory || '')
+  const [subcategories, setSubcategories] = useState([])
+
+  const updateSubcategories = useCallback(category => {
+    const found = categories
+      .find(item => item.name === category)
+    const foundSubcategories = found ? found.subcategories : []
+    setSubcategories(foundSubcategories)
+  }, [categories])
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -31,7 +40,16 @@ const CategorizeForm = ({expense, isOpen, onSave, onClose, categories}) => {
     onClose()
   }
 
+  const handleChangeCategory = value => {
+    setCategory(value)
+    const subcategories = updateSubcategories(value)
+  }
+
   const {date, description, amount} = expense
+
+  useEffect(() => {
+    updateSubcategories(category)
+  }, [category, updateSubcategories])
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
@@ -51,16 +69,15 @@ const CategorizeForm = ({expense, isOpen, onSave, onClose, categories}) => {
             <CategorizeSelector 
               categories={categories}
               value={category}
-              onChange={setCategory}
+              onChange={handleChangeCategory}
             />
-          </Box>
-          <Box>
-            <TextField
-              label="Subcategoría"
+            <SubcategorySelector
+              subcategories={subcategories}
               value={subcategory}
-              onChange={e => setSubcategory(e.target.value)}
+              onChange={setSubcategory}
             />
           </Box>
+   
           <DialogActions>
             <Button onClick={onClose}>Cancelar</Button>
             <Button type="submit" variant="contained" color="primary">

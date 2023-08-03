@@ -46,7 +46,15 @@ export default class ExcelDocumentRepository {
       const days = row[0]
       const date = this.generateUniqueDate(days)
       const emptyCategory = ''
-      const expense = new Expense(reportId, date, description, amount, emptyCategory)
+      const emptySubcategory = ''
+      const expense = new Expense(
+        reportId,
+        date,
+        description,
+        amount,
+        emptyCategory,
+        emptySubcategory
+      )
       expenses.push(expense)
     }
 

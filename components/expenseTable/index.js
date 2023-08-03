@@ -8,7 +8,7 @@ import useListCategories from '@/hooks/useListCategories'
 
 import style from './index.module.css'
 
-const ExpenseTable = ({expenses, categorizeForm: CategorizeForm}) => {
+const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange}) => {
   const [showForm, setShowForm] = useState(false)
   const [updatingExpense, setUpdatingExpense] = useState(null)
   
@@ -46,6 +46,7 @@ const ExpenseTable = ({expenses, categorizeForm: CategorizeForm}) => {
 
   const handleSave = updatedExpense => {
     saveExpense(updatedExpense)
+      .then(onChange)    
   }
 
   const handleClose = () => {
