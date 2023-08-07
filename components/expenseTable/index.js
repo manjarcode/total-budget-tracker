@@ -8,7 +8,7 @@ import useListCategories from '@/hooks/useListCategories'
 
 import style from './index.module.css'
 
-const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange}) => {
+const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange, isLoading}) => {
   const [showForm, setShowForm] = useState(false)
   const [updatingExpense, setUpdatingExpense] = useState(null)
   
@@ -67,6 +67,7 @@ const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange}) => {
       )}
 
       <DataGrid
+        loading={isLoading}
         getRowId={getRowId}
         onRowClick={onRowClick}
         columns={columns}

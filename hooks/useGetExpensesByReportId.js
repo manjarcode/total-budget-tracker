@@ -2,6 +2,7 @@ import {useEffect, useState, useCallback} from 'react'
 
 export default function useGetExpensesByReportId(reportId) {
   const [expenses, setExpenses] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const refetch = useCallback(() => {
     const hasReportId = reportId !== undefined
@@ -9,19 +10,25 @@ export default function useGetExpensesByReportId(reportId) {
     if (!hasReportId) {
       return
     }
-    fetch(url, {
+
+    setIsLoading(true)
+    return fetch(url, {
       method: 'GET'
     })
       .then(resp => resp.json())
       .then(resp => resp.map(transformDate))
       .then(resp => setExpenses(resp))
+      .then(resp => {
+        setIsLoading(false)
+        return resp
+      })
   },[reportId])
 
   useEffect(() => {
     refetch()
   }, [reportId, refetch])
 
-  return {expenses, refetch}
+  return {expenses, refetch, isLoading}
 }
 
 function transformDate(expense) {
