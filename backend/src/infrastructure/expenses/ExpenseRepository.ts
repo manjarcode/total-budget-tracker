@@ -3,6 +3,7 @@ import { injectable, inject } from "inversify"
 import Expense from "../../domain/models/Expense"
 import Types from "../../types.js"
 import ExpenseMapper from "./ExpenseMapper"
+import {FilterExpressionOperator} from "dynamodb-adapter/lib/types"
 
 @injectable()
 export default class ExpenseRepository {
@@ -30,8 +31,26 @@ export default class ExpenseRepository {
     return Promise.resolve()
   }
 
-  async list(reportId: string) : Promise<Expense[]> { 
-    const records = await this.client.query(reportId)
+  async listCategorized(reportId: string) : Promise<Expense[]> {
+    const filters = [{
+      attribute: 'category',
+      operator: FilterExpressionOperator.Exists
+    }]
+
+    const records = await this.client.query(reportId, null, filters)
+    
+    const entities = records.map(this.mapper.toDomain)
+  
+    return entities
+  }
+
+  async listUncategorized(reportId: string) : Promise<Expense[]> { 
+    const filters = [{
+      attribute: 'category',
+      operator: FilterExpressionOperator.NotExists
+    }]
+
+    const records = await this.client.query(reportId, null, filters)
     
     const entities = records.map(this.mapper.toDomain)
   

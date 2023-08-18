@@ -3,9 +3,9 @@ export default class Category {
   name: string
   subcategories: string[]
   
-  constructor(categoryId: string, name: string, subcategories: string[]) {
+  constructor(categoryId: string, name: string, subcategories: Set<string>) {
     this.categoryId = categoryId
     this.name = name
-    this.subcategories = subcategories
+    this.subcategories = Array.from(subcategories)
   }
 }

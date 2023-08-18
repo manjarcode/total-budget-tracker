@@ -1,9 +1,10 @@
 import { injectable, inject } from "inversify"
 import Types from "../types.js"
+import ReportRepository from "../infrastructure/reports/ReportRepository.js"
 
 @injectable()
 export default class ListReportsUseCase {
-  private reportRepository: any //TODO usar el bueno
+  private reportRepository: ReportRepository
 
   constructor(
     @inject(Types.Repositories.ReportRepository) reportRepository

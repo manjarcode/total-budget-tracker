@@ -9,11 +9,12 @@ const Types = {
     CategoryRepository: Symbol("CategoryRepository"),
   },
   UseCases: {
-    ListReportsUseCase: Symbol("ListReportsUseCase"),
-    SaveDocumentUseCase: Symbol("SaveDocumentUseCase"),
-    GetReportUseCase: Symbol("GetReportUseCase"),
     CategorizeExpenseUseCase: Symbol("CategorizeExpenseUseCase"),
     ListCategoriesUseCase: Symbol("ListCategoriesUseCase"),
+    ListCategorizedExpensesUseCase: Symbol("ListCategorizedExpensesUseCase"),
+    ListReportsUseCase: Symbol("ListReportsUseCase"),
+    ListUncategorizedExpensesUseCase: Symbol("ListUncategorizedExpensesUseCase"),
+    SaveDocumentUseCase: Symbol("SaveDocumentUseCase"),
   },
   DynamoDbAdapterFactory: Symbol("DynamoDbAdapter"),
 }

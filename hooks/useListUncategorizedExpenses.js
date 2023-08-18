@@ -1,12 +1,13 @@
 import {useEffect, useState, useCallback} from 'react'
 
-export default function useGetExpensesByReportId(reportId) {
+export default function useListUncategorizedExpenses(reportId) {
   const [expenses, setExpenses] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   const refetch = useCallback(() => {
     const hasReportId = reportId !== undefined
-    const url = `/api/expenses/${reportId}`
+    const url = `/api/expenses/${reportId}/uncategorized`
+    
     if (!hasReportId) {
       return
     }

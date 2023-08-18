@@ -15,7 +15,7 @@ export default class GetReportUseCase {
   }
 
   async execute(reportId: string) {
-    const expenses = await this.expenseRepository.list(reportId)
+    const expenses = await this.expenseRepository.listCategorized(reportId)
     return expenses
   }
 }
