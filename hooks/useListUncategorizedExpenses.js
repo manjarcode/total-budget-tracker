@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 
 export default function useListUncategorizedExpenses(reportId) {
   const [expenses, setExpenses] = useState([])
@@ -7,7 +7,7 @@ export default function useListUncategorizedExpenses(reportId) {
   const refetch = useCallback(() => {
     const hasReportId = reportId !== undefined
     const url = `/api/expenses/${reportId}/uncategorized`
-    
+
     if (!hasReportId) {
       return
     }
@@ -23,7 +23,7 @@ export default function useListUncategorizedExpenses(reportId) {
         setIsLoading(false)
         return resp
       })
-  },[reportId])
+  }, [reportId])
 
   useEffect(() => {
     refetch()

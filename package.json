@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "npm run build:be && next build",
     "start": "next start",
-    "lint": "sui-lint js",
+    "lint": "sui-lint js --fix",
     "build:be": "npm run build --workspace=backend"
   },
   "dependencies": {

@@ -1,17 +1,23 @@
 import {useState} from 'react'
 
+import PropTypes from 'prop-types'
+
+import useListCategories from '@/hooks/useListCategories.js'
+import useSaveExpense from '@/hooks/useSaveExpense.js'
 import {Box} from '@mui/material'
 import {DataGrid} from '@mui/x-data-grid'
 
-import useSaveExpense from '../../hooks/useSaveExpense.js'
-import useListCategories from '@/hooks/useListCategories'
-
 import style from './index.module.css'
 
-const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange, isLoading}) => {
+export default function ExpenseTable({
+  expenses,
+  categorizeForm: CategorizeForm,
+  onChange,
+  isLoading
+}) {
   const [showForm, setShowForm] = useState(false)
   const [updatingExpense, setUpdatingExpense] = useState(null)
-  
+
   const categories = useListCategories()
 
   const isModalOpen = Boolean(updatingExpense)
@@ -45,8 +51,7 @@ const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange, isLoa
   }
 
   const handleSave = updatedExpense => {
-    saveExpense(updatedExpense)
-      .then(onChange)    
+    saveExpense(updatedExpense).then(onChange)
   }
 
   const handleClose = () => {
@@ -77,4 +82,9 @@ const ExpenseTable = ({expenses, categorizeForm: CategorizeForm, onChange, isLoa
   )
 }
 
-export default ExpenseTable
+ExpenseTable.propTypes = {
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  categorizeForm: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+}

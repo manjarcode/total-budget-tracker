@@ -1,10 +1,11 @@
-import {CacheProvider, EmotionCache} from '@emotion/react'
+import {CacheProvider} from '@emotion/react'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 
 import createEmotionCache from './emotionCache.js'
 import {theme} from './theme.js'
 
 const clientSideEmotionCache = createEmotionCache()
+
 export default function RootLayout(props) {
   const {children, emotionCache = clientSideEmotionCache} = props
   return (
@@ -12,7 +13,6 @@ export default function RootLayout(props) {
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <body>
-            nepe hermano
             <CssBaseline />
             {children}
           </body>

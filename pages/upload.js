@@ -1,6 +1,5 @@
-import RootLayout from '@/app/layout'
-import FileUploader from '@/components/fileUploader'
-import useUploadFile from '@/hooks/useUploadFile'
+import FileUploader from '@/components/fileUploader/index.js'
+import useUploadFile from '@/hooks/useUploadFile.js'
 import Button from '@mui/material/Button'
 
 export default function UploadPage() {

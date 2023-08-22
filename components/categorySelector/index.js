@@ -1,11 +1,9 @@
+import PropTypes from 'prop-types'
+
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 
-export default function CategorySelector({
-  categories, 
-  value, 
-  onChange
-}) {
+export default function CategorySelector({categories, value, onChange}) {
   return (
     <Select
       labelId="category"
@@ -22,6 +20,12 @@ export default function CategorySelector({
           {item.name}
         </MenuItem>
       ))}
-  </Select>
+    </Select>
   )
+}
+
+CategorySelector.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 }
