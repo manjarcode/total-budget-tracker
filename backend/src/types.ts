@@ -8,8 +8,12 @@ const Types = {
     ExpenseRepository: Symbol("ExpenseRepository"),
     CategoryRepository: Symbol("CategoryRepository"),
   },
+  Services: {
+    ReportService: Symbol("ReportService"),
+  },
   UseCases: {
     CategorizeExpenseUseCase: Symbol("CategorizeExpenseUseCase"),
+    ConsolidateReportUseCase: Symbol("ConsolidateReportUseCase"),
     ListCategoriesUseCase: Symbol("ListCategoriesUseCase"),
     ListCategorizedExpensesUseCase: Symbol("ListCategorizedExpensesUseCase"),
     ListReportsUseCase: Symbol("ListReportsUseCase"),

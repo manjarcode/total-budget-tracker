@@ -13,6 +13,8 @@ import ExpenseMapper from "./infrastructure/expenses/ExpenseMapper.js"
 import CategoryRepository from "./infrastructure/categories/CategoryRepository.js";
 import ListCategoriesUseCase from "./application/listCategoriesUseCase.js";
 import ListUncategorizedExpensesUseCase from "./application/listUncategorizedExpensesUseCase.js";
+import ConsolidateReportUseCase from "./application/consolidateReportUseCase.js";
+import ReportService from "./domain/services/ReportService.js";
 
 let container : Container;
 
@@ -24,7 +26,9 @@ function initContainer() {
   container.bind<ExcelDocumentRepository>(Types.Repositories.ExcelDocumentRepository).to(ExcelDocumentRepository)
   container.bind<ExpenseRepository>(Types.Repositories.ExpenseRepository).to(ExpenseRepository)
   container.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportRepository)
+  container.bind<ReportService>(Types.Services.ReportService).to(ReportService)
   container.bind<CategorizeExpenseUseCase>(Types.UseCases.CategorizeExpenseUseCase).to(CategorizeExpenseUseCase)
+  container.bind<ConsolidateReportUseCase>(Types.UseCases.ConsolidateReportUseCase).to(ConsolidateReportUseCase)
   container.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCategoriesUseCase)
   container.bind<ListCategorizedExpenses>(Types.UseCases.ListCategorizedExpensesUseCase).to(ListCategorizedExpenses)
   container.bind<ListReportsUseCase>(Types.UseCases.ListReportsUseCase).to(ListReportsUseCase)
