@@ -1,16 +1,26 @@
-import formidable from 'formidable'
+'use server'
 import {NextResponse} from 'next/server'
+import DI, {Types} from 'total-budget-tracker-backend'
+import {v4 as uuid} from 'uuid'
 
-export async function POST(req, res) {
-  const form = formidable()
+export async function POST(request) {
+  const data = await request.formData()
+  const file = data.get('file')
 
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      throw err
-    }
+  if (!file) {
+    return NextResponse.json({success: false})
+  }
 
-    const uploadedFile = files.file
+  const bytes = await file.arrayBuffer()
+  const buffer = Buffer.from(bytes)
 
-    return NextResponse.json(uploadedFile)
+  const reportId = uuid()
+  const useCase = DI.get(Types.UseCases.SaveDocumentUseCase)
+    
+  const expenses = await useCase.execute(reportId, buffer)
+
+  return NextResponse.json({
+    filename: file.name,
+    expenses
   })
 }

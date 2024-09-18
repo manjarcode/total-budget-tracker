@@ -1,5 +1,5 @@
-import { injectable } from "inversify";
 import "reflect-metadata";
+import { injectable } from "inversify";
 import * as xlsx from "xlsx";
 
 import Expense from "../../domain/models/Expense.js";
@@ -11,7 +11,6 @@ export default class ExcelDocumentRepository {
   constructor() {
     this.givenTimes = []
   }
-
 
   generateUniqueDate(days): Date {
     const date = new Date(0, 0, days - 1)
@@ -28,9 +27,14 @@ export default class ExcelDocumentRepository {
     return date
   }
 
-  read(reportId:string, filePath: string): Promise<Expense[]> {
-    const workbook = xlsx.readFile(filePath)
+  read(reportId:string, buffer: any): Promise<Expense[]> {
+    const workbook = xlsx.read(buffer)
     const worksheet = workbook.Sheets[workbook.SheetNames[0]]
+    
+    return this.parse(worksheet, reportId)
+  }
+
+  parse(worksheet: any, reportId: string): Promise<Expense[]> {
     const rows = xlsx.utils.sheet_to_json(worksheet, { header: 1 }) as any[][]
 
     const expenses: Expense[] = [];
@@ -57,8 +61,6 @@ export default class ExcelDocumentRepository {
       )
       expenses.push(expense)
     }
-
-
     return Promise.resolve(expenses)
   }
 }

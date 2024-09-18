@@ -16,30 +16,24 @@ import ListUncategorizedExpensesUseCase from "./application/listUncategorizedExp
 import ConsolidateReportUseCase from "./application/consolidateReportUseCase.js";
 import ReportService from "./domain/services/ReportService.js";
 
-let container : Container;
+const DI = new Container()
 
-function initContainer() {
-  container = new Container()
-  container.bind<DynamoDbAdapterFactory>(Types.DynamoDbAdapterFactory).to(DynamoDbAdapterFactory)
-  container.bind<ExpenseMapper>(Types.Mappers.ExpenseMapper).to(ExpenseMapper)
-  container.bind<CategoryRepository>(Types.Repositories.CategoryRepository).to(CategoryRepository)
-  container.bind<ExcelDocumentRepository>(Types.Repositories.ExcelDocumentRepository).to(ExcelDocumentRepository)
-  container.bind<ExpenseRepository>(Types.Repositories.ExpenseRepository).to(ExpenseRepository)
-  container.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportRepository)
-  container.bind<ReportService>(Types.Services.ReportService).to(ReportService)
-  container.bind<CategorizeExpenseUseCase>(Types.UseCases.CategorizeExpenseUseCase).to(CategorizeExpenseUseCase)
-  container.bind<ConsolidateReportUseCase>(Types.UseCases.ConsolidateReportUseCase).to(ConsolidateReportUseCase)
-  container.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCategoriesUseCase)
-  container.bind<ListCategorizedExpenses>(Types.UseCases.ListCategorizedExpensesUseCase).to(ListCategorizedExpenses)
-  container.bind<ListReportsUseCase>(Types.UseCases.ListReportsUseCase).to(ListReportsUseCase)
-  container.bind<ListUncategorizedExpensesUseCase>(Types.UseCases.ListUncategorizedExpensesUseCase).to(ListUncategorizedExpensesUseCase)
-  container.bind<SaveDocumentUseCase>(Types.UseCases.SaveDocumentUseCase).to(SaveDocumentUseCase)
-}
+DI.bind<DynamoDbAdapterFactory>(Types.DynamoDbAdapterFactory).to(DynamoDbAdapterFactory)
+DI.bind<ExpenseMapper>(Types.Mappers.ExpenseMapper).to(ExpenseMapper)
 
-export default function containerInstance()  {
-  if (!container) {
-    initContainer()
-  }
+DI.bind<CategoryRepository>(Types.Repositories.CategoryRepository).to(CategoryRepository)
+DI.bind<ExcelDocumentRepository>(Types.Repositories.ExcelDocumentRepository).to(ExcelDocumentRepository)
+DI.bind<ExpenseRepository>(Types.Repositories.ExpenseRepository).to(ExpenseRepository)
+DI.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportRepository)
 
-  return container
-}
+DI.bind<ReportService>(Types.Services.ReportService).to(ReportService)
+
+DI.bind<CategorizeExpenseUseCase>(Types.UseCases.CategorizeExpenseUseCase).to(CategorizeExpenseUseCase)
+DI.bind<ConsolidateReportUseCase>(Types.UseCases.ConsolidateReportUseCase).to(ConsolidateReportUseCase)
+DI.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCategoriesUseCase)
+DI.bind<ListCategorizedExpenses>(Types.UseCases.ListCategorizedExpensesUseCase).to(ListCategorizedExpenses)
+DI.bind<ListReportsUseCase>(Types.UseCases.ListReportsUseCase).to(ListReportsUseCase)
+DI.bind<ListUncategorizedExpensesUseCase>(Types.UseCases.ListUncategorizedExpensesUseCase).to(ListUncategorizedExpensesUseCase)
+DI.bind<SaveDocumentUseCase>(Types.UseCases.SaveDocumentUseCase).to(SaveDocumentUseCase)
+
+export default DI
