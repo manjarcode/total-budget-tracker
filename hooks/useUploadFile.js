@@ -5,8 +5,8 @@ export default function useUploadFile() {
     const promise = fetch('/api/upload', {
       method: 'POST',
       body: formData
-    })
-
+    }).then(async response => response.json())      
+   
     return promise
   }
   return {upload}
