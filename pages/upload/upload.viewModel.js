@@ -1,3 +1,4 @@
+'use client'
 import {useState} from 'react'
 import useUploadFile from '@/hooks/useUploadFile.js'
 
@@ -9,9 +10,16 @@ export default function ViewModel() {
     upload(file).then(setResponse)
   }
 
-  const hasResponse = Boolean(response)
+  const isFileUploaded = Boolean(response)
 
   const filename = response?.filename
+  const expenses = response?.expenses
 
-  return {hasResponse, filename, response, handleFileUpload}
+  return {isFileUploaded, filename, expenses, handleFileUpload}
+}
+
+export async function getServerSideProps() {
+  return {
+    props: {}
+  }
 }

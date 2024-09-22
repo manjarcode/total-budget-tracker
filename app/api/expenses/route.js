@@ -1,10 +1,10 @@
 import {NextResponse} from 'next/server'
-import containerInstance, {Types} from 'total-budget-tracker-backend'
+import DI, {Types} from 'total-budget-tracker-backend'
 
 export async function POST(request) {
   const dto = await request.json()
   const {reportId, name, yermon} = dto
-  const useCase = containerInstance().get(Types.UseCases.SaveDocumentUseCase)
+  const useCase = DI.get(Types.UseCases.SaveDocumentUseCase)
 
   const path = `${process.cwd()}/temp/example.xls`
   const data = await useCase.execute(reportId, path, name, yermon)
@@ -13,7 +13,7 @@ export async function POST(request) {
 }
 
 export async function PUT(request) {
-  const useCase = containerInstance().get(
+  const useCase = DI.get(
     Types.UseCases.CategorizeExpenseUseCase
   )
 

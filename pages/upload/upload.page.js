@@ -1,17 +1,20 @@
 import FileUploader from '@/components/fileUploader/index.js'
 
-import Button from '@mui/material/Button'
 import ViewModel from './upload.viewModel'
+import ReportForm from '@/components/reportForm/index.js'
 
 export default function UploadPage() {
 
-  const {hasResponse, filename, handleFileUpload} = ViewModel()
+  const {isFileUploaded, filename, expenses, handleFileUpload} = ViewModel()
 
   return (
     <>
-      <FileUploader onFileUpload={handleFileUpload} />
-      {hasResponse && <p>Archivo subido: {filename}</p>}
-      <Button disabled={!hasResponse} variant="contained">Continuar</Button>
+      {!isFileUploaded && <FileUploader onFileUpload={handleFileUpload} />}
+      {isFileUploaded && 
+      <>
+        <p>Archivo subido: {filename}</p>
+        <ReportForm expenses={expenses} />
+      </>}
     </>
   )
 }
