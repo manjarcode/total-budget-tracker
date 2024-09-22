@@ -11,8 +11,9 @@ const Types = {
   Services: {
     ReportService: Symbol("ReportService"),
   },
-  UseCases: {
+  UseCases: {    
     CategorizeExpenseUseCase: Symbol("CategorizeExpenseUseCase"),
+    CreateReportUseCase: Symbol("CreateReportUseCase"),
     ConsolidateReportUseCase: Symbol("ConsolidateReportUseCase"),
     ListCategoriesUseCase: Symbol("ListCategoriesUseCase"),
     ListCategorizedExpensesUseCase: Symbol("ListCategorizedExpensesUseCase"),

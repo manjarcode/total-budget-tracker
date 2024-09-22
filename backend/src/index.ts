@@ -15,6 +15,7 @@ import ListCategoriesUseCase from "./application/listCategoriesUseCase.js";
 import ListUncategorizedExpensesUseCase from "./application/listUncategorizedExpensesUseCase.js";
 import ConsolidateReportUseCase from "./application/consolidateReportUseCase.js";
 import ReportService from "./domain/services/ReportService.js";
+import CreateReportUseCase from "./application/createReportUseCase.js";
 
 const DI = new Container()
 
@@ -28,7 +29,9 @@ DI.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportReposito
 
 DI.bind<ReportService>(Types.Services.ReportService).to(ReportService)
 
+
 DI.bind<CategorizeExpenseUseCase>(Types.UseCases.CategorizeExpenseUseCase).to(CategorizeExpenseUseCase)
+DI.bind<CreateReportUseCase>(Types.UseCases.CreateReportUseCase).to(CreateReportUseCase)
 DI.bind<ConsolidateReportUseCase>(Types.UseCases.ConsolidateReportUseCase).to(ConsolidateReportUseCase)
 DI.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCategoriesUseCase)
 DI.bind<ListCategorizedExpenses>(Types.UseCases.ListCategorizedExpensesUseCase).to(ListCategorizedExpenses)
