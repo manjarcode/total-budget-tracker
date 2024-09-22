@@ -47,9 +47,9 @@ export default class ExpenseRepository {
   async listUncategorized(reportId: string) : Promise<Expense[]> { 
     const filters = [{
       attribute: 'category',
-      operator: FilterExpressionOperator.NotExists
+      operator: FilterExpressionOperator.Equals,
+      value: ''
     }]
-
     const records = await this.client.query(reportId, null, filters)
     
     const entities = records.map(this.mapper.toDomain)
