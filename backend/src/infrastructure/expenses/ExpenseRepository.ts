@@ -61,4 +61,8 @@ export default class ExpenseRepository {
     const record = this.mapper.toRecord(expense)
     return await this.client.update(record)
   }
+
+  async removeByReportId(reportId: string) {
+    return await this.client.deleteByPartitionKey(reportId)
+  }
 }

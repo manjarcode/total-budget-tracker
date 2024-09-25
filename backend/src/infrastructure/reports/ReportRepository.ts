@@ -22,4 +22,8 @@ export default class ReportRepository {
   list() : Promise<Report[]> { 
     return this.client.scan()
   }
+
+  remove(reportId: string) {
+    return this.client.delete(reportId)
+  }
 }

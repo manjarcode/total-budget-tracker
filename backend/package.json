@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/manjarcode/total-budget-tracker#readme",
   "dependencies": {
-    "dynamodb-adapter": "^2.1.0",
+    "dynamodb-adapter": "^2.2.0",
     "inversify": "^6.0.1",
     "reflect-metadata": "^0.1.13",
     "typescript": "^5.1.3",
