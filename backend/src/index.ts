@@ -16,6 +16,7 @@ import ListUncategorizedExpensesUseCase from "./application/listUncategorizedExp
 import ConsolidateReportUseCase from "./application/consolidateReportUseCase.js";
 import ReportService from "./domain/services/ReportService.js";
 import CreateReportUseCase from "./application/createReportUseCase.js";
+import RemoveReportUseCase from "./application/removeReportUseCase.js";
 
 const DI = new Container()
 
@@ -37,6 +38,7 @@ DI.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCate
 DI.bind<ListCategorizedExpenses>(Types.UseCases.ListCategorizedExpensesUseCase).to(ListCategorizedExpenses)
 DI.bind<ListReportsUseCase>(Types.UseCases.ListReportsUseCase).to(ListReportsUseCase)
 DI.bind<ListUncategorizedExpensesUseCase>(Types.UseCases.ListUncategorizedExpensesUseCase).to(ListUncategorizedExpensesUseCase)
+DI.bind<RemoveReportUseCase>(Types.UseCases.RemoveReportUseCase).to(RemoveReportUseCase)
 DI.bind<SaveDocumentUseCase>(Types.UseCases.SaveDocumentUseCase).to(SaveDocumentUseCase)
 
 export default DI

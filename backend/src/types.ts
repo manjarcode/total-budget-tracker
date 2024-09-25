@@ -19,6 +19,7 @@ const Types = {
     ListCategorizedExpensesUseCase: Symbol("ListCategorizedExpensesUseCase"),
     ListReportsUseCase: Symbol("ListReportsUseCase"),
     ListUncategorizedExpensesUseCase: Symbol("ListUncategorizedExpensesUseCase"),
+    RemoveReportUseCase: Symbol("RemoveReportUseCase"),
     SaveDocumentUseCase: Symbol("SaveDocumentUseCase"),
   },
   DynamoDbAdapterFactory: Symbol("DynamoDbAdapter"),
