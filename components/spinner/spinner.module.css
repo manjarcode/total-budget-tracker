@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.spinner {
+  width: 50px; /* Tamaño del spinner */
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.2); /* Borde gris claro */
+  border-top: 5px solid #3498db; /* Borde superior azul */
+  border-radius: 50%; /* Hace el div circular */
+  animation: spin 1s linear infinite; /* Animación continua */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg); /* Empieza sin rotación */
+  }
+  to {
+    transform: rotate(360deg); /* Gira completamente */
+  }
+}

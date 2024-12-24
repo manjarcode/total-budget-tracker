@@ -4,6 +4,7 @@ import {Box, Typography} from '@mui/material'
 
 import style from './index.module.css'
 import ViewModel from './expenseTable.viewModel'
+import ExpenseTableSkeleton from './expenseTable.skeleton'
 
 export default function ExpenseTable({
   expenses,
@@ -27,7 +28,7 @@ export default function ExpenseTable({
           onClose={viewModel.handleClose}
         />
       )}
-
+      <ExpenseTableSkeleton isLoading={isLoading} />
       <table className={style.table}>
         {expenses.map(expense => (
           <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
