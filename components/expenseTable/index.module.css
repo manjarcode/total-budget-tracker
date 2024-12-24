@@ -1,4 +1,13 @@
-.container {
-  max-width: 65vw;
-  margin: 0 auto;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tr {
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.table td {
+  padding: 0.5rem 0;
 }

@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography'
 
 import CategorizeSelector from '../categorySelector/index.js'
 import SubcategorySelector from '../subcategorySelector/index.js'
+import useFormatDate from '@/hooks/useFormatDate.js'
 
 export default function CategorizeForm({
   expense,
@@ -23,6 +24,8 @@ export default function CategorizeForm({
   const [category, setCategory] = useState(expense.category || '')
   const [subcategory, setSubcategory] = useState(expense.subcategory || '')
   const [subcategories, setSubcategories] = useState([])
+
+  const formatDate = useFormatDate()
 
   const updateSubcategories = useCallback(
     category => {
@@ -67,10 +70,10 @@ export default function CategorizeForm({
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <Box>
-            <Typography variant="body1">{`Fecha: ${date}`}</Typography>
+            <Typography variant="h6">{description}</Typography>
           </Box>
           <Box>
-            <Typography variant="body1">{description}</Typography>
+            <Typography variant="body1">{`Fecha: ${formatDate(date)}`}</Typography>
           </Box>
           <Box>
             <Typography variant="body1">{`Cantidad: ${amount}`}</Typography>

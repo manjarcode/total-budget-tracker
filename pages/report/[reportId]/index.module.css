@@ -1,0 +1,8 @@
+.container {
+  max-width: 65vw;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 1rem !important;
+}
