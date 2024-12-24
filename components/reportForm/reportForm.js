@@ -17,7 +17,7 @@ export default function ReportForm(props) {
         <TextField id="outlined-basic" label="Yermon" variant="outlined" value={viewModel.yermon} onChange={viewModel.handleYermonChange} />
       </Box>
       <Box>
-        <Button variant="contained" onClick={viewModel.createReport}>Continuar</Button>
+        <Button variant="contained" onClick={viewModel.createReport}>Guardar</Button>
       </Box>
     </form>
   )

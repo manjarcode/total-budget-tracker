@@ -21,5 +21,5 @@ export async function POST(request) {
 
   await usecase.execute(reportId, name, yermon, expenses)
 
-  return NextResponse.json()
+  return NextResponse.json({})
 }

@@ -77,6 +77,7 @@ export default function ExpenseTable({
         onRowClick={onRowClick}
         columns={columns}
         rows={expenses}
+        pagination={false}
       />
     </Box>
   )
