@@ -29,7 +29,7 @@ export default function ExpenseTable({
         />
       )}
       <ExpenseTableSkeleton isLoading={isLoading} />
-      <table className={style.table}>
+      {!isLoading && <table className={style.table}>
         {expenses.map(expense => (
           <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
             <td>
@@ -49,7 +49,7 @@ export default function ExpenseTable({
             </td> 
           </tr>
         ))}
-      </table>
+      </table>}
     </Box>
   )
 }
