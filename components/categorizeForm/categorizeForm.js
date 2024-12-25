@@ -51,7 +51,7 @@ export default function CategorizeForm({
                 onChange={viewModel.setSubcategory}
               />
             </Box>
-            <DialogActions>
+            <DialogActions className={style.actions}>
               <Button onClick={onClose}>Cancelar</Button>
               <Button type="submit" variant="contained" color="primary">
                 Guardar

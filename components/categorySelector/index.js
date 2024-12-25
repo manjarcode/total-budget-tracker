@@ -1,26 +1,20 @@
 import PropTypes from 'prop-types'
 
-import MenuItem from '@mui/material/MenuItem'
-import Select from '@mui/material/Select'
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 
 export default function CategorySelector({categories, value, onChange}) {
   return (
-    <Select
-      labelId="category"
-      id="category"
-      value={value}
-      label="Categoría"
-      onChange={event => {
-        const value = event.target.value
-        onChange(value)
-      }}
-    >
-      {categories.map(item => (
-        <MenuItem key={item.name} value={item.name}>
-          {item.name}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl sx={{mr: 4}}>
+      <FormLabel>Categoría</FormLabel>
+      <RadioGroup
+        value={value}
+        onChange={event => { onChange(event.target.value) }}
+      >
+        {categories.map(item => (
+          <FormControlLabel key={item.name} value={item.name} control={<Radio />} label={item.name} />
+        ))}
+      </RadioGroup>
+    </FormControl>
   )
 }
 
