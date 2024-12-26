@@ -5,14 +5,13 @@ import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import DeleteIcon from '@mui/icons-material/Delete'
+import useNavigate from '@/hooks/useNavigate'
 
 export default function Home() {
+  const navigate = useNavigate()
   const {reports, remove} = useReports()
 
-  const curryReportId = reportId => {
-    return `/report/${reportId}`
-  }
-
+  
   const handleRemoveReport =  reportId => async () => {
     await remove(reportId)
   }
@@ -22,7 +21,7 @@ export default function Home() {
       <List>
         {reports.map(report => (
           <ListItem key={report.id}>
-            <Link href={curryReportId(report.id)}>{report.name}</Link>
+            <Link href={navigate.linkToConsolidateReport(report.id)}>{report.name}</Link>
             <Link href="#" onClick={handleRemoveReport(report.id)}><DeleteIcon /></Link>
           </ListItem>
         ))}

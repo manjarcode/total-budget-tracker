@@ -3,9 +3,14 @@ import {useRouter} from 'next/router'
 export default function useNavigate() {
   const router = useRouter()
 
+  const query = router.query
+
+  const linkToConsolidateReport = (reportId) => {
+    return `/report/${reportId}/consolidate`
+  }
   const toConsolidateReport = (reportId) => {
-    router.push(`/report/${reportId}`)
+    router.push(linkToConsolidateReport(reportId))
   }
 
-  return {toConsolidateReport}
+  return {query, linkToConsolidateReport, toConsolidateReport}
 }
