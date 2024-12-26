@@ -1,0 +1,12 @@
+.table {
+  border-collapse: separate; 
+}
+
+.table td {
+  padding-right: 16px;
+}
+
+.table th {
+  text-align: left;
+  padding-right: 16px;
+}

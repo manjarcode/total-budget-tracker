@@ -1,3 +1,4 @@
+import RootLayout from "@/app/layout"
 import ReportSummary from "@/components/reportSummary"
 import useConsolidatedReport from "@/hooks/useConsolidatedReport"
 import { useRouter } from "next/router"
@@ -8,9 +9,11 @@ export default function ReportSummay() {
 
   const reportSummary = useConsolidatedReport(reportId)
 
-  return (<>
-    <h1>Resumen del informe</h1>
-    <ReportSummary reportSummary={reportSummary} />
-  </>)
+  return (
+    <RootLayout>
+      <h1>Resumen del informe</h1>
+      <ReportSummary reportSummary={reportSummary} />
+    </RootLayout>
+  )
 }
 

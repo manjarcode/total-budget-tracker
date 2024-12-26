@@ -1,12 +1,11 @@
-import CategoryTable from "./categoryTable"
+import CompactTable from "./compactTable"
 import style from './index.module.css'
 
 export default function ReportSummary({reportSummary}) {
+  console.table(reportSummary)
   return (
     <div className={style.container}>
-      {reportSummary.map((item, index) => {
-        return <CategoryTable key={index} category={item} />
-      })} 
+      <CompactTable reportSummary={reportSummary} />
     </div>
   )
 }
