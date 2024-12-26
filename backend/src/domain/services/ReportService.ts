@@ -40,6 +40,10 @@ export default class ReportService {
 
 
   private retrieveItem(items: ExpenseItem[], name: string) : ExpenseItem {
+    if (!name) {
+      name = '(Sin categoría)'
+    }
+    
     const itemFound = items.find(item => item.name === name)
 
     if (itemFound) {

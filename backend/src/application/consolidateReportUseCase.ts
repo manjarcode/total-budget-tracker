@@ -13,8 +13,6 @@ export default class ConsolidateReportUseCase {
   }
 
   execute(reportId: string) {
-
-    console.log('ConsolidateReportUseCase.execute', reportId)
     return this.reportService.consolidate(reportId)    
   }
 }
