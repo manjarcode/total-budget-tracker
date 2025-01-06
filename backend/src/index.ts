@@ -17,6 +17,7 @@ import ConsolidateReportUseCase from "./application/consolidateReportUseCase.js"
 import ReportService from "./domain/services/ReportService.js";
 import CreateReportUseCase from "./application/createReportUseCase.js";
 import RemoveReportUseCase from "./application/removeReportUseCase.js";
+import BBVADocumentRepository from "./infrastructure/documents/BBVADocumentRepository.js";
 
 const DI = new Container()
 
@@ -25,6 +26,7 @@ DI.bind<ExpenseMapper>(Types.Mappers.ExpenseMapper).to(ExpenseMapper)
 
 DI.bind<CategoryRepository>(Types.Repositories.CategoryRepository).to(CategoryRepository)
 DI.bind<ExcelDocumentRepository>(Types.Repositories.ExcelDocumentRepository).to(ExcelDocumentRepository)
+DI.bind<BBVADocumentRepository>(Types.Repositories.BBVADocumentRepository).to(BBVADocumentRepository)
 DI.bind<ExpenseRepository>(Types.Repositories.ExpenseRepository).to(ExpenseRepository)
 DI.bind<ReportRepository>(Types.Repositories.ReportRepository).to(ReportRepository)
 

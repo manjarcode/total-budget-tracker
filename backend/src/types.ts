@@ -5,6 +5,7 @@ const Types = {
   Repositories: {
     ReportRepository: Symbol("ReportRepository"),
     ExcelDocumentRepository: Symbol("ExcelDocumentRepository"),
+    BBVADocumentRepository: Symbol("BBVADocumentRepository"),
     ExpenseRepository: Symbol("ExpenseRepository"),
     CategoryRepository: Symbol("CategoryRepository"),
   },
