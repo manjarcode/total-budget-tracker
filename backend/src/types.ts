@@ -20,6 +20,7 @@ const Types = {
     ListCategorizedExpensesUseCase: Symbol("ListCategorizedExpensesUseCase"),
     ListReportsUseCase: Symbol("ListReportsUseCase"),
     ListUncategorizedExpensesUseCase: Symbol("ListUncategorizedExpensesUseCase"),
+    RemoveExpenseUseCase: Symbol("RemoveExpenseUseCase"),
     RemoveReportUseCase: Symbol("RemoveReportUseCase"),
     SaveDocumentUseCase: Symbol("SaveDocumentUseCase"),
   },

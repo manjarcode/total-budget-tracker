@@ -65,4 +65,8 @@ export default class ExpenseRepository {
   async removeByReportId(reportId: string) {
     return await this.client.deleteByPartitionKey(reportId)
   }
+
+  async remove(reportId: string, expenseId: number) {
+    return await this.client.delete(reportId, expenseId)
+  }
 }
