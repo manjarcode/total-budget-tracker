@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types'
 
+import cx from 'classnames'
 import {Box, Typography} from '@mui/material'
-
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import style from './index.module.css'
 import ViewModel from './expenseTable.viewModel'
-import ExpenseTableSkeleton from './expenseTable.skeleton'
+
+import LinearProgress from '@mui/material/LinearProgress'
+
 export default function ExpenseTable({
   expenses,
   categorizeForm: CategorizeForm,
@@ -19,8 +21,9 @@ export default function ExpenseTable({
 
   const isModalOpen = Boolean(viewModel.updatingExpense)
 
+  const hasExpenses = expenses && expenses.length > 0
   return (
-    <Box className={style.container}>
+    <Box>
       {viewModel.showForm && (
         <CategorizeForm
           categories={viewModel.categories}
@@ -30,32 +33,33 @@ export default function ExpenseTable({
           onClose={viewModel.handleClose}
         />
       )}
-      <ExpenseTableSkeleton isLoading={isLoading} />
-      {!isLoading && <table className={style.table}>
-        {expenses.map(expense => (
-          <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
-            <td>
-              <Typography variant="body1">
-                {viewModel.formatDate(expense.date)}
-              </Typography>
-            </td>
-            <td>
-              <Typography variant="body1">
-                {expense.description}
-              </Typography>    
-            </td>
-            <td>
-              <Typography variant="body1">
-                {expense.amount}
-              </Typography>
-            </td>
-            <td>
-              <IconButton >
-                <DeleteIcon onClick={viewModel.handleRemove(expense)} />
-              </IconButton>
-            </td>
-          </tr>
-        ))}
+      {isLoading && <LinearProgress />}
+      {hasExpenses && 
+        <table className={cx(style.table, {[style.loading]: isLoading})}>
+          {expenses.map(expense => (
+            <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
+              <td>
+                <Typography variant="body1">
+                  {viewModel.formatDate(expense.date)}
+                </Typography>
+              </td>
+              <td>
+                <Typography variant="body1">
+                  {expense.description}
+                </Typography>    
+              </td>
+              <td>
+                <Typography variant="body1">
+                  {expense.amount}
+                </Typography>
+              </td>
+              <td>
+                <IconButton >
+                  <DeleteIcon onClick={viewModel.handleRemove(expense)} />
+                </IconButton>
+              </td>
+            </tr>
+          ))}
       </table>}
     </Box>
   )

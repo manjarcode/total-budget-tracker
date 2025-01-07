@@ -11,3 +11,14 @@
 .table td {
   padding: 0.5rem 0;
 }
+
+.loading {
+  background-color: #dddddd;
+  opacity: 0.5;
+}
+
+.spinner {
+  position: absolute;
+  top: 20rem;
+  left: 50%;
+}
