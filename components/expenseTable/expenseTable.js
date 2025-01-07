@@ -2,10 +2,12 @@ import PropTypes from 'prop-types'
 
 import {Box, Typography} from '@mui/material'
 
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete'
+
 import style from './index.module.css'
 import ViewModel from './expenseTable.viewModel'
 import ExpenseTableSkeleton from './expenseTable.skeleton'
-
 export default function ExpenseTable({
   expenses,
   categorizeForm: CategorizeForm,
@@ -46,7 +48,12 @@ export default function ExpenseTable({
               <Typography variant="body1">
                 {expense.amount}
               </Typography>
-            </td> 
+            </td>
+            <td>
+              <IconButton >
+                <DeleteIcon onClick={viewModel.handleRemove(expense)} />
+              </IconButton>
+            </td>
           </tr>
         ))}
       </table>}

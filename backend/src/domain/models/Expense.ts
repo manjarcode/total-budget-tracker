@@ -1,4 +1,5 @@
 export default class Expense {
+  id: Number
   reportId: string
   description: string
   amount: number
@@ -14,6 +15,7 @@ export default class Expense {
     category: string,
     subcategory: string
   ) {
+    this.id = Number(date)
     this.reportId = reportId
     this.date = date
     this.description = description

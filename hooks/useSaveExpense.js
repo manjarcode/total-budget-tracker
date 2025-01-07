@@ -1,4 +1,4 @@
-export default function useSaveExpense() {
+export default function useExpenses() {
   const saveExpense = expense => {
     const url = `/api/expenses`
     return fetch(url, {
@@ -10,5 +10,13 @@ export default function useSaveExpense() {
     })
   }
 
-  return {saveExpense}
+  const removeExpense = (reportId, expenseId) => {
+    const url = `/api/reports/${reportId}/expense/${expenseId}`
+
+    return fetch(url, {
+      method: 'DELETE'
+    })
+  }
+
+  return {saveExpense, removeExpense}
 }

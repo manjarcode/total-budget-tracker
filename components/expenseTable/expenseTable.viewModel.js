@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import useSaveExpense from '@/hooks/useSaveExpense.js'
+import useExpenses from '@/hooks/useSaveExpense.js'
 import useListCategories from '@/hooks/useListCategories.js'
 import useFormatDate from '@/hooks/useFormatDate'
 
@@ -10,7 +10,7 @@ export default function ViewModel({onChange}) {
 
   const categories = useListCategories()
   const formatDate = useFormatDate()
-  const {saveExpense} = useSaveExpense()
+  const {saveExpense, removeExpense} = useExpenses()
 
   const handleSave = updatedExpense => {
     saveExpense(updatedExpense).then(onChange)
@@ -26,6 +26,21 @@ export default function ViewModel({onChange}) {
     setUpdatingExpense(expense)
   }
 
+  const handleRemove = expense => async ev => {
+    ev.stopPropagation()
+    const {reportId, id} = expense
+    await removeExpense(reportId, id)
+    onChange()
+  }
 
-  return {showForm, updatingExpense, categories, formatDate, handleSave, handleClose, handleRowClick}
+  return {
+    showForm, 
+    updatingExpense, 
+    categories,
+    formatDate,
+    handleSave,
+    handleClose,
+    handleRowClick,
+    handleRemove
+  }
 }
