@@ -11,13 +11,11 @@ import ViewModel from './expenseTable.viewModel'
 import LinearProgress from '@mui/material/LinearProgress'
 
 export default function ExpenseTable({
-  expenses,
   categorizeForm: CategorizeForm,
-  onChange,
-  isLoading
+  ...props
 }) {
 
-  const viewModel = ViewModel({expenses, isLoading, onChange})
+  const viewModel = ViewModel(props)
 
   return (
     <Box>

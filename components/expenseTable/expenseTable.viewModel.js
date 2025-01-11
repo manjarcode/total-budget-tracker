@@ -44,6 +44,7 @@ export default function ViewModel({expenses, isLoading, onChange}) {
   }
 
   return {
+    expenses,
     showForm, 
     updatingExpense, 
     categories,
