@@ -6,11 +6,11 @@ import useNavigate from '@/hooks/useNavigate'
 import RootLayout from '@/app/layout'
 
 
-export default function ConsolidateReport() {
+export default function EditReport() {
   const navigate = useNavigate()
   const reportId = navigate.query.reportId
 
-  const {expenses, refetch, isLoading} = useListExpenses(reportId, 'uncategorized')
+  const {expenses, refetch, isLoading} = useListExpenses(reportId, 'categorized')
 
   return (
     <RootLayout> 

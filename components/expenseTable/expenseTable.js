@@ -14,7 +14,6 @@ export default function ExpenseTable({
   categorizeForm: CategorizeForm,
   ...props
 }) {
-
   const viewModel = ViewModel(props)
 
   return (
@@ -31,7 +30,7 @@ export default function ExpenseTable({
       {viewModel.displayLoader && <LinearProgress />}
       {viewModel.hasExpenses && 
         <table className={cx(style.table, {[style.loading]: viewModel.displayLoader})}>
-          {expenses.map(expense => (
+          {viewModel.expenses && viewModel.expenses.map(expense => (
             <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
               <td>
                 <Typography variant="body1">
