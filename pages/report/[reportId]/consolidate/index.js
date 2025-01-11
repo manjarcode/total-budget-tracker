@@ -4,6 +4,7 @@ import useListUncategorizedExpenses from '@/hooks/useListUncategorizedExpenses.j
 import { Box, Typography } from '@mui/material'
 import style from './index.module.css'
 import useNavigate from '@/hooks/useNavigate'
+import RootLayout from '@/app/layout'
 
 
 export default function ReportById() {
@@ -14,7 +15,7 @@ export default function ReportById() {
 
 
   return (
-    <Box className={style.container}> 
+    <RootLayout> 
       <Typography className={style.title} variant="h4">Informe</Typography>
       <ExpenseTable
         expenses={expenses}
@@ -24,6 +25,6 @@ export default function ReportById() {
           refetch()
         }}
       />
-    </Box>
+    </RootLayout>
   )
 }
