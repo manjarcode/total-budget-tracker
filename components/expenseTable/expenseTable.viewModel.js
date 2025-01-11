@@ -4,7 +4,7 @@ import useExpenses from '@/hooks/useSaveExpense.js'
 import useListCategories from '@/hooks/useListCategories.js'
 import useFormatDate from '@/hooks/useFormatDate'
 
-export default function ViewModel({isLoading, onChange}) {
+export default function ViewModel({expenses, isLoading, onChange}) {
   const [showForm, setShowForm] = useState(false)
   const [updatingExpense, setUpdatingExpense] = useState(null)
   const [internalLoading, setInternalLoading] = useState(false)
@@ -14,6 +14,8 @@ export default function ViewModel({isLoading, onChange}) {
   const {saveExpense, removeExpense} = useExpenses()
 
   const displayLoader = isLoading || internalLoading
+  const isModalOpen = Boolean(updatingExpense)
+  const hasExpenses = Array.isArray(expenses) && expenses.length > 0
 
   const handleSave = async updatedExpense => {
     setInternalLoading(true)
@@ -46,6 +48,8 @@ export default function ViewModel({isLoading, onChange}) {
     updatingExpense, 
     categories,
     displayLoader,
+    isModalOpen,
+    hasExpenses,
     formatDate,
     handleSave,
     handleClose,
