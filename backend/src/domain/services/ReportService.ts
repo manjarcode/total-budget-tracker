@@ -14,14 +14,16 @@ export default class ReportService {
   }
 
   async consolidate(reportId: string) {
-    const expenses = await this.expenseRepository.listCategorized(reportId)
+    const items = await this.expenseRepository.listCategorized(reportId)
+
+    const expenses = items.filter(item => item.amount < 0)
 
     const dictionary: ExpenseItem[] = []
 
     for (const expense of expenses) {
       const category = expense.category
       const subcategory = expense.subcategory
-      const amount = expense.amount
+      const amount = -expense.amount
       const hasSubcategory = subcategory !== null      
 
       const categoryItem = this.retrieveItem(dictionary, category)
@@ -35,9 +37,10 @@ export default class ReportService {
       this.consolidateItem(subcategoryItem, amount)      
     }
 
+    this.formatAmmount(dictionary)
+    
     return dictionary
   }
-
 
   private retrieveItem(items: ExpenseItem[], name: string) : ExpenseItem {
     if (!name) {
@@ -63,5 +66,15 @@ export default class ReportService {
 
   private consolidateItem(item: ExpenseItem, amount: number) {
     item.total += amount
+  }
+
+  private formatAmmount(dictionary) {
+    for (const category of dictionary) {
+      category.total = Math.round(category.total * 100) / 100
+
+      for (const subcategory of category.items) {
+        subcategory.total = Math.round(subcategory.total*100) / 100
+      }
+    }
   }
 }
