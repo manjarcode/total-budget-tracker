@@ -13,7 +13,7 @@ export default function EditReport() {
   const {expenses, refetch, isLoading} = useListExpenses(reportId, 'categorized')
 
   return (
-    <RootLayout> 
+    <RootLayout title="Editar Informe"> 
       <Typography variant="h4">Informe</Typography>
       <ExpenseTable
         expenses={expenses}

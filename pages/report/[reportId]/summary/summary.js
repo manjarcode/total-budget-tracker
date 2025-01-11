@@ -8,7 +8,7 @@ export default function ReportSummay() {
   const viewModel = ViewModel()
 
   return (
-    <RootLayout>
+    <RootLayout title="Resumen del informe">
       <h1>Resumen del informe</h1>
       <ReportSummary reportSummary={viewModel.reportSummary} />
       <Box sx={{ mt: 4 }}>

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import {CacheProvider} from '@emotion/react'
 import {Box, CssBaseline, ThemeProvider} from '@mui/material'
 
@@ -8,17 +9,24 @@ import style from './layout.module.css'
 const clientSideEmotionCache = createEmotionCache()
 
 export default function RootLayout(props) {
-  const {children, emotionCache = clientSideEmotionCache} = props
+  const {children, title, emotionCache = clientSideEmotionCache} = props
+
+  const defaultTitle = 'Total Budget Tracker'
+  const formattedtitle = [defaultTitle, title].filter(Boolean).join(' - ')
+  
   return (
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box className={style.container}>
-            <Box className={style.main}>
-              {children}
-            </Box>
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <title>{formattedtitle}</title>
+      </Head>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box className={style.container}>
+          <Box className={style.main}>
+            {children}
           </Box>
-        </ThemeProvider>
-      </CacheProvider>
+        </Box>
+      </ThemeProvider>
+    </CacheProvider>
   )
 }
