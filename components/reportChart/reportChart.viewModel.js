@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { colors } from "./colors"
+
 export default function ViewModel({reportSummary}) {
   const [dataset, setDataset] = useState({})
 
@@ -12,10 +13,9 @@ export default function ViewModel({reportSummary}) {
       labels: reportSummary.map(item => item.name),
       datasets: [
         {
-          label: 'Gastos', // Etiqueta del dataset
+          label: 'Gastos',
           data: reportSummary.map(item => item.total),
-           backgroundColor: colors
-          // backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'], // Colores
+          backgroundColor: colors
         },
       ],
     }
