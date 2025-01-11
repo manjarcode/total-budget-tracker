@@ -4,16 +4,22 @@ import useExpenses from '@/hooks/useSaveExpense.js'
 import useListCategories from '@/hooks/useListCategories.js'
 import useFormatDate from '@/hooks/useFormatDate'
 
-export default function ViewModel({onChange}) {
+export default function ViewModel({isLoading, onChange}) {
   const [showForm, setShowForm] = useState(false)
   const [updatingExpense, setUpdatingExpense] = useState(null)
+  const [internalLoading, setInternalLoading] = useState(false)
 
   const categories = useListCategories()
   const formatDate = useFormatDate()
   const {saveExpense, removeExpense} = useExpenses()
 
-  const handleSave = updatedExpense => {
-    saveExpense(updatedExpense).then(onChange)
+  const displayLoader = isLoading || internalLoading
+
+  const handleSave = async updatedExpense => {
+    setInternalLoading(true)
+    await saveExpense(updatedExpense)
+    onChange()
+    setInternalLoading(false)
   }
 
   const handleClose = () => {
@@ -29,14 +35,17 @@ export default function ViewModel({onChange}) {
   const handleRemove = expense => async ev => {
     ev.stopPropagation()
     const {reportId, id} = expense
+    setInternalLoading(true)
     await removeExpense(reportId, id)
     onChange()
+    setInternalLoading(false)
   }
 
   return {
     showForm, 
     updatingExpense, 
     categories,
+    displayLoader,
     formatDate,
     handleSave,
     handleClose,

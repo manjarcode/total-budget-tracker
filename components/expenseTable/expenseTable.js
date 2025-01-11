@@ -17,11 +17,12 @@ export default function ExpenseTable({
   isLoading
 }) {
 
-  const viewModel = ViewModel({onChange})
+  const viewModel = ViewModel({onChange, isLoading})
 
   const isModalOpen = Boolean(viewModel.updatingExpense)
 
   const hasExpenses = expenses && expenses.length > 0
+
   return (
     <Box>
       {viewModel.showForm && (
@@ -33,9 +34,9 @@ export default function ExpenseTable({
           onClose={viewModel.handleClose}
         />
       )}
-      {isLoading && <LinearProgress />}
+      {viewModel.displayLoader && <LinearProgress />}
       {hasExpenses && 
-        <table className={cx(style.table, {[style.loading]: isLoading})}>
+        <table className={cx(style.table, {[style.loading]: viewModel.displayLoader})}>
           {expenses.map(expense => (
             <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
               <td>
