@@ -1,16 +1,20 @@
 import {useEffect, useState} from 'react'
 
 export default function useConsolidatedReport(reportId) {
-  const [expenseItems, setExpenseItems] = useState([])
+  const [report, setReport] = useState({items:[], summary: {}})
 
   useEffect(() => {
+    if (!reportId) return
+    
     const url = `/api/reports/${reportId}`
+
     fetch(url, {
       method: 'GET'
     })
-      .then(response => response.json())
-      .then(response => setExpenseItems(response))
+    .then(response => response.json())
+    .then(response => setReport(response))
+    
   }, [reportId])
 
-  return expenseItems
+  return report
 }

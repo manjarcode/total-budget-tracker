@@ -38,8 +38,13 @@ export default class ReportService {
     }
 
     this.formatAmmount(dictionary)
+
+    this.sumAmmount(dictionary)
     
-    return dictionary
+    return {
+      items: dictionary,
+      summary: this.sumAmmount(dictionary)
+    }
   }
 
   private retrieveItem(items: ExpenseItem[], name: string) : ExpenseItem {
@@ -76,5 +81,15 @@ export default class ReportService {
         subcategory.total = Math.round(subcategory.total*100) / 100
       }
     }
+  }
+
+  private sumAmmount(dictionary) {
+    let total = 0
+
+    for (const category of dictionary) {
+      total += category.total
+    }
+
+    return {total}
   }
 }

@@ -12,7 +12,7 @@ export default function ReportSummay() {
       <h1>Resumen del informe</h1>
       <ReportSummary reportSummary={viewModel.reportSummary} />
       <Box sx={{ mt: 4 }}>
-        <ReportChart reportSummary={viewModel.reportSummary} />
+        <ReportChart reportSummary={viewModel.reportSummary?.items} />
       </Box>
     </RootLayout>
   )
