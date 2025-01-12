@@ -15,11 +15,13 @@ export default function CompactTable({reportSummary}) {
           return <tr key={index}>
             <Td>{item.name}</Td>
             <Td>{item.total}</Td>
+            <Td>{item.budget}</Td>
           </tr>
         })}
         <tr>
           <Td>Total</Td>
           <Td>{reportSummary.summary?.total}</Td>
+          <Td>{reportSummary.summary?.budget}</Td>
         </tr>
       </tbody>
     </table>)

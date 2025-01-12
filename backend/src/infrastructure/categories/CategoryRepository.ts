@@ -18,11 +18,12 @@ export default class CategoryRepository {
   async list() : Promise<Category[]> {
     const records = await this.client.scan()
 
-    const entities = records.map(({categoryId, name, subcategories}) => 
+    const entities = records.map(({categoryId, name, subcategories, budget}) => 
       new Category(
         categoryId,
         name,
-        subcategories
+        subcategories,
+        budget
       )
     )
     

@@ -39,6 +39,16 @@ export default class ExpenseGroupCollection {
     return total
   }
 
+  public totalBudget() {
+    let total = 0
+
+    for (const group of this.collection) {
+      total += group.getBugget()
+    }
+
+    return total
+  }
+
   public toDto() {
     return this.collection.map(group => group.toDto())
   }

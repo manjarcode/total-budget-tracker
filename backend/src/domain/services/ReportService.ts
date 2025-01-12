@@ -28,10 +28,13 @@ export default class ReportService {
 
     const collection = this.groupByCategory(expenses)
 
+    this.applyBudgets(categories, collection)
+
     return {
       items: collection.toDto(),
       summary: {
-        total: collection.totalAmmount()
+        total: collection.totalAmmount(),
+        budget: collection.totalBudget()
       }
     }
   }
@@ -57,5 +60,14 @@ export default class ReportService {
     }
 
     return collection
+  }
+
+  private applyBudgets(categories, collection) {
+    for (const category of categories) {
+      const categoryName = category.name
+      const categoryGroup = collection.getByName(categoryName)
+
+      categoryGroup.setBudget(category.budget)
+    }
   }
 }
