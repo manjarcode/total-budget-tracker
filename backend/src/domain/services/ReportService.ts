@@ -1,95 +1,68 @@
 import { injectable, inject } from 'inversify'
 import Types from '../../types.js'
 import ExpenseRepository from '../../infrastructure/expenses/ExpenseRepository.js'
+import CategoryRepository from '../../infrastructure/categories/CategoryRepository.js'
 import ExpenseItem from '../models/ExpenseItem.js'
+import ExpenseGroupCollection from '../models/ExpenseGroupCollection.js'
 
 @injectable()
 export default class ReportService {
   private expenseRepository: ExpenseRepository 
+  private categoryRepository: CategoryRepository
 
   constructor(
-    @inject(Types.Repositories.ExpenseRepository) expenseRepository
+    @inject(Types.Repositories.ExpenseRepository) expenseRepository,
+    @inject(Types.Repositories.CategoryRepository) categoryRepository,
   ) {
     this.expenseRepository = expenseRepository
+    this.categoryRepository = categoryRepository
   }
 
   async consolidate(reportId: string) {
-    const items = await this.expenseRepository.listCategorized(reportId)
+    const [categories, movements] = await Promise.all([
+      this.categoryRepository.list(),
+      this.expenseRepository.listCategorized(reportId)
+    ])
 
-    const expenses = items.filter(item => item.amount < 0)
+    const expenses = movements.filter(item => item.amount < 0)
 
-    const dictionary: ExpenseItem[] = []
+    const collection = this.groupByCategory(expenses)
+
+    collection.formatAmmount()
+
+      
+    return {
+      items: collection.items(),
+      summary: {
+        total: collection.totalAmmount()
+      }
+    }
+  }
+
+  private groupByCategory(expenses) : ExpenseGroupCollection {
+    const collection = new ExpenseGroupCollection()
 
     for (const expense of expenses) {
-      const category = expense.category
-      const subcategory = expense.subcategory
+      const categoryName = expense.category
+      const subcategoryName = expense.subcategory
       const amount = -expense.amount
-      const hasSubcategory = subcategory !== null      
+      const hasSubcategory = subcategoryName !== null      
 
-      const categoryItem = this.retrieveItem(dictionary, category)
-      this.consolidateItem(categoryItem, amount)
+      const category = collection.getByName(categoryName)
+      this.consolidateItem(category, amount)
 
       if (!hasSubcategory) {
         continue
       }
 
-      const subcategoryItem = this.retrieveItem(categoryItem.items, subcategory)
-      this.consolidateItem(subcategoryItem, amount)      
+      const subcategoryGroup = category.items.getByName(subcategoryName)
+      this.consolidateItem(subcategoryGroup, amount)      
     }
 
-    this.formatAmmount(dictionary)
-
-    this.sumAmmount(dictionary)
-    
-    return {
-      items: dictionary,
-      summary: this.sumAmmount(dictionary)
-    }
-  }
-
-  private retrieveItem(items: ExpenseItem[], name: string) : ExpenseItem {
-    if (!name) {
-      name = '(Sin categoría)'
-    }
-    
-    const itemFound = items.find(item => item.name === name)
-
-    if (itemFound) {
-      return itemFound
-    }
-
-    const item: ExpenseItem = {
-      name,
-      total:0,
-      items: []
-    }
-
-    items.push(item)
-
-    return item
+    return collection
   }
 
   private consolidateItem(item: ExpenseItem, amount: number) {
     item.total += amount
-  }
-
-  private formatAmmount(dictionary) {
-    for (const category of dictionary) {
-      category.total = Math.round(category.total * 100) / 100
-
-      for (const subcategory of category.items) {
-        subcategory.total = Math.round(subcategory.total*100) / 100
-      }
-    }
-  }
-
-  private sumAmmount(dictionary) {
-    let total = 0
-
-    for (const category of dictionary) {
-      total += category.total
-    }
-
-    return {total}
   }
 }

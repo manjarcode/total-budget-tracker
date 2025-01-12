@@ -6,7 +6,7 @@ import {
 } from 'chart.js';
 import ViewModel from './reportChart.viewModel';
 import { Bar } from 'react-chartjs-2';
-
+import style from './reportChart.module.css';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,7 +18,7 @@ export default function ReportChart({reportSummary}) {
 
   return (
     <>
-      {viewModel.hasData && <Bar data={viewModel.dataset} /> }
+      {viewModel.hasData && <Bar className={style.container} data={viewModel.dataset} /> }
     </>
   )
 }
