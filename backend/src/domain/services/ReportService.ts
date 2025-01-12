@@ -28,11 +28,8 @@ export default class ReportService {
 
     const collection = this.groupByCategory(expenses)
 
-    collection.formatAmmount()
-
-      
     return {
-      items: collection.items(),
+      items: collection.toDto(),
       summary: {
         total: collection.totalAmmount()
       }
@@ -49,20 +46,16 @@ export default class ReportService {
       const hasSubcategory = subcategoryName !== null      
 
       const category = collection.getByName(categoryName)
-      this.consolidateItem(category, amount)
-
+      category.addAmount(amount)
+      
       if (!hasSubcategory) {
         continue
       }
 
-      const subcategoryGroup = category.items.getByName(subcategoryName)
-      this.consolidateItem(subcategoryGroup, amount)      
+      const subcategoryGroup = category.getSubgroups().getByName(subcategoryName)      
+      subcategoryGroup.addAmount(amount)
     }
 
     return collection
-  }
-
-  private consolidateItem(item: ExpenseGroup, amount: number) {
-    item.total += amount
   }
 }

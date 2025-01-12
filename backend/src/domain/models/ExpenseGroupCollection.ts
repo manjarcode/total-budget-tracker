@@ -10,11 +10,7 @@ export default class ExpenseGroupCollection {
   }
 
   public getByName(name: string = DEFAULT_UNCATEGORIZED_NAME) : ExpenseGroup {
-    if (!name) {
-      name = '(Sin categoría)'
-    }
-    
-    const groupFound = this.collection.find(item => item.name === name)
+    const groupFound = this.collection.find(group => group.getName() === name)
 
     if (groupFound) {
       return groupFound
@@ -26,41 +22,24 @@ export default class ExpenseGroupCollection {
   }
 
   private addEmptyGroup(name) {
-    const group: ExpenseGroup = {
-      name,
-      total:0,
-      items: new ExpenseGroupCollection()
-    }
+    const group: ExpenseGroup = new ExpenseGroup(name)
 
     this.collection.push(group)
 
     return group
   }
 
-
-  public formatAmmount() {
-    for (const group of this.collection) {
-      //TODO: ESTO SE PUEDE METER EN EL EXPENSE GROUP
-      group.total = Math.round(group.total * 100) / 100
-
-      // TODO arreglar
-      for (const subcategory of group.items.collection) {
-        subcategory.total = Math.round(subcategory.total*100) / 100
-      }
-    }
-  }
-
   public totalAmmount() {
     let total = 0
 
-    for (const category of this.collection) {
-      total += category.total
+    for (const group of this.collection) {
+      total += group.getTotal()
     }
 
     return total
   }
 
-  public items() {
-    return this.collection
+  public toDto() {
+    return this.collection.map(group => group.toDto())
   }
 }
