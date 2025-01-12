@@ -1,15 +1,15 @@
-import ExpenseItem from "./ExpenseItem"
+import ExpenseGroup from "./ExpenseGroup"
 
 const DEFAULT_UNCATEGORIZED_NAME = 'Otros'
 
 export default class ExpenseGroupCollection {
-  private collection: ExpenseItem[]
+  private collection: ExpenseGroup[]
   
   public constructor() {
     this.collection = []
   }
 
-  public getByName(name: string = DEFAULT_UNCATEGORIZED_NAME) : ExpenseItem {
+  public getByName(name: string = DEFAULT_UNCATEGORIZED_NAME) : ExpenseGroup {
     if (!name) {
       name = '(Sin categoría)'
     }
@@ -26,7 +26,7 @@ export default class ExpenseGroupCollection {
   }
 
   private addEmptyGroup(name) {
-    const group: ExpenseItem = {
+    const group: ExpenseGroup = {
       name,
       total:0,
       items: new ExpenseGroupCollection()

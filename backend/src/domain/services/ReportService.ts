@@ -2,7 +2,7 @@ import { injectable, inject } from 'inversify'
 import Types from '../../types.js'
 import ExpenseRepository from '../../infrastructure/expenses/ExpenseRepository.js'
 import CategoryRepository from '../../infrastructure/categories/CategoryRepository.js'
-import ExpenseItem from '../models/ExpenseItem.js'
+import ExpenseGroup from '../models/ExpenseGroup.js'
 import ExpenseGroupCollection from '../models/ExpenseGroupCollection.js'
 
 @injectable()
@@ -62,7 +62,7 @@ export default class ReportService {
     return collection
   }
 
-  private consolidateItem(item: ExpenseItem, amount: number) {
+  private consolidateItem(item: ExpenseGroup, amount: number) {
     item.total += amount
   }
 }
