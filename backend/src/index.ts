@@ -19,6 +19,7 @@ import CreateReportUseCase from "./application/createReportUseCase.js";
 import RemoveReportUseCase from "./application/removeReportUseCase.js";
 import BBVADocumentRepository from "./infrastructure/documents/BBVADocumentRepository.js";
 import RemoveExpenseUseCase from "./application/removeExpenseUseCase.js";
+import CreateExpenseUseCase from "./application/transactions/createExpenseUseCase.js";
 
 const DI = new Container()
 
@@ -35,6 +36,7 @@ DI.bind<ReportService>(Types.Services.ReportService).to(ReportService)
 
 
 DI.bind<CategorizeExpenseUseCase>(Types.UseCases.CategorizeExpenseUseCase).to(CategorizeExpenseUseCase)
+DI.bind<CreateExpenseUseCase>(Types.UseCases.Transactions.CreateExpenseUseCase).to(CreateExpenseUseCase)
 DI.bind<CreateReportUseCase>(Types.UseCases.CreateReportUseCase).to(CreateReportUseCase)
 DI.bind<ConsolidateReportUseCase>(Types.UseCases.ConsolidateReportUseCase).to(ConsolidateReportUseCase)
 DI.bind<ListCategoriesUseCase>(Types.UseCases.ListCategoriesUseCase).to(ListCategoriesUseCase)

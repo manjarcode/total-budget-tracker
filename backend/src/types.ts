@@ -1,3 +1,5 @@
+import CreateExpenseUseCase from "./application/transactions/createExpenseUseCase"
+
 const Types = {
   Mappers: {
     ExpenseMapper: Symbol("ExpenseMapper"),
@@ -12,7 +14,10 @@ const Types = {
   Services: {
     ReportService: Symbol("ReportService"),
   },
-  UseCases: {    
+  UseCases: {
+    Transactions: {
+      CreateExpenseUseCase: Symbol("CreateExpenseUseCase"),
+    },
     CategorizeExpenseUseCase: Symbol("CategorizeExpenseUseCase"),
     CreateReportUseCase: Symbol("CreateReportUseCase"),
     ConsolidateReportUseCase: Symbol("ConsolidateReportUseCase"),

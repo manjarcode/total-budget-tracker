@@ -21,6 +21,11 @@ export default class ExpenseRepository {
     this.mapper = expenseMapper
   }
 
+  async create(expense: Expense) : Promise<void> {
+    const record = this.mapper.toRecord(expense)
+    return this.client.add(record)
+  }
+
   async save(expenses: Expense[]) : Promise<void> {
     const promises = expenses
       .map(e => this.mapper.toRecord(e))
