@@ -1,4 +1,16 @@
 export default function useExpenses() {
+
+  const createExpense = expense => {
+    const url = `/api/expenses`
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(expense)
+    })
+  }
+
   const saveExpense = expense => {
     const url = `/api/expenses`
     return fetch(url, {
@@ -18,5 +30,5 @@ export default function useExpenses() {
     })
   }
 
-  return {saveExpense, removeExpense}
+  return {createExpense, saveExpense, removeExpense}
 }

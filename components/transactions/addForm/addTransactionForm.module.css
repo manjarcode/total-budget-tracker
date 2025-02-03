@@ -1,0 +1,11 @@
+.modal {
+  min-width: 550px;
+  min-height: 400px;
+}
+
+.actions {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 24px;
+}
