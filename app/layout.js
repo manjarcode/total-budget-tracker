@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import {CacheProvider} from '@emotion/react'
 import {Box, CssBaseline, ThemeProvider} from '@mui/material'
-
+import "manjark/dist/index.css"
 import createEmotionCache from './emotionCache.js'
 import {theme} from './theme.js'
 import style from './layout.module.css'
