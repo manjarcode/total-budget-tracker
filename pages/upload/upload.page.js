@@ -1,4 +1,6 @@
+'use client'
 import FileUploader from '@/components/fileUploader/index.js'
+import {Text} from 'manjark'
 
 import ViewModel from './upload.viewModel'
 import ReportForm from '@/components/reportForm/index.js'
@@ -10,7 +12,7 @@ export default function UploadPage() {
 
   return (
     <RootLayout>
-      <h1>Subir archivo</h1>
+      <Text.Title>Subir archivo</Text.Title>
       {!isFileUploaded && <>
         <p>Añade un archivo para poder generar el informe</p>
         <FileUploader onFileUpload={handleFileUpload} />

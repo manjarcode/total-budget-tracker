@@ -1,5 +1,5 @@
 import {Box} from '@mui/material'
-import TextField from '@mui/material/TextField'
+import {Text, Textbox} from 'manjark'
 import Button from '@mui/material/Button'
 import { ViewModel } from './reportForm.viewModel'
 
@@ -8,13 +8,13 @@ export default function ReportForm(props) {
   return (
     <form>
       <Box>
-        <p>Se han cargado {viewModel.expenseCount} gastos</p>
+        <Text>Se han cargado {viewModel.expenseCount} gastos</Text>
       </Box>
       <Box>
-        <TextField id="outlined-basic" label="Nombre del informe" variant="outlined" value={viewModel.name} onChange={viewModel.handleNameChange} />           
+        <Textbox label="Nombre del informe" value={viewModel.name} onChange={viewModel.handleNameChange} />
       </Box>
       <Box>
-        <TextField id="outlined-basic" label="Yermon" variant="outlined" value={viewModel.yermon} onChange={viewModel.handleYermonChange} />
+        <Textbox label="Identificador" value={viewModel.yermon} onChange={viewModel.handleYermonChange} />
       </Box>
       <Box>
         <Button variant="contained" onClick={viewModel.createReport}>Guardar</Button>
