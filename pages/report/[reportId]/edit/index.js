@@ -1,1 +1,1 @@
-export {default} from './edit.page.js'
+export {default} from '@/views/edit/index.js'

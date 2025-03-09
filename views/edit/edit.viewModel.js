@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-export default function ViewModel() {
+export default function useViewModel() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleOpenModal = () => {

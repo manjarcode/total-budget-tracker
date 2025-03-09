@@ -4,12 +4,13 @@ import useListExpenses from '@/hooks/useListExpenses.js'
 import {Box, Button, Typography} from '@mui/material'
 import useNavigate from '@/hooks/useNavigate'
 import RootLayout from '@/app/layout'
-import ViewModel from './edit.viewModel'
+import useViewModel from './edit.viewModel'
 import AddTransactionForm from '@/components/transactions/addForm'
 import style from './edit.module.css'
 
 export default function EditReport() {
-  const viewModel = ViewModel()
+  const {isModalOpen, handleOpenModal, onCloseModal} = useViewModel()
+
   const navigate = useNavigate()
   const reportId = navigate.query.reportId
 
@@ -22,7 +23,7 @@ export default function EditReport() {
     <RootLayout title="Editar Informe">
       <Box className={style.header}>
         <Typography variant="h4">Informe</Typography>
-        <Button variant="outlined" onClick={viewModel.handleOpenModal}>
+        <Button variant="outlined" onClick={handleOpenModal}>
           Añadir movimiento
         </Button>
       </Box>
@@ -36,8 +37,8 @@ export default function EditReport() {
       />
       <AddTransactionForm
         reportId={reportId}
-        isOpen={viewModel.isModalOpen}
-        onClose={viewModel.onCloseModal}
+        isOpen={isModalOpen}
+        onClose={onCloseModal}
       />
     </RootLayout>
   )

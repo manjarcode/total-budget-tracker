@@ -5,14 +5,14 @@ import ReportChart from '@/components/reportChart/reportChart'
 import {Box} from '@mui/material'
 
 export default function ReportSummay() {
-  const viewModel = ViewModel()
+  const {reportSummary} = ViewModel()
 
   return (
     <RootLayout title="Resumen del informe">
       <h1>Resumen del informe</h1>
-      <ReportSummary reportSummary={viewModel.reportSummary} />
+      <ReportSummary reportSummary={reportSummary} />
       <Box sx={{mt: 4}}>
-        <ReportChart reportSummary={viewModel.reportSummary?.items} />
+        <ReportChart reportSummary={reportSummary?.items} />
       </Box>
     </RootLayout>
   )

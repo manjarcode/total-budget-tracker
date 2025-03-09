@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:be && next build",
+    "build": "npm run build:be && NEXT_DEBUG=true next build",
     "start": "next start",
     "lint": "sui-lint js --fix",
     "build:be": "npm run build --workspace=backend"

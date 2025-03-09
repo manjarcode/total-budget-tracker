@@ -9,28 +9,32 @@ import 'manjark/dist/index.css'
 export default function ReportList({reports, onEdit, onSummary, onDelete}) {
   return (
     <ul className={style.list}>
-      {reports.map(report => (
-        <li className={style.item} key={report.id}>
-          {report.name}
-          <Menu>
-            <Menu.Item value="Editar informe" onClick={() => onEdit(report.id)}>
-              <EditIcon /> Editar
-            </Menu.Item>
-            <Menu.Item
-              value="Ver resumen de informe"
-              onClick={() => onSummary(report.id)}
-            >
-              <VisibilityIcon /> Ver resumen
-            </Menu.Item>
-            <Menu.Item
-              value="Borrar informe"
-              onClick={() => onDelete(report.id)}
-            >
-              <DeleteIcon /> Borrar
-            </Menu.Item>
-          </Menu>
-        </li>
-      ))}
+      {reports &&
+        reports.map(report => (
+          <li className={style.item} key={report.id}>
+            {report.name}
+            <Menu>
+              <Menu.Item
+                value="Editar informe"
+                onClick={() => onEdit(report.id)}
+              >
+                <EditIcon /> Editar
+              </Menu.Item>
+              <Menu.Item
+                value="Ver resumen de informe"
+                onClick={() => onSummary(report.id)}
+              >
+                <VisibilityIcon /> Ver resumen
+              </Menu.Item>
+              <Menu.Item
+                value="Borrar informe"
+                onClick={() => onDelete(report.id)}
+              >
+                <DeleteIcon /> Borrar
+              </Menu.Item>
+            </Menu>
+          </li>
+        ))}
     </ul>
   )
 }

@@ -1,1 +1,1 @@
-export {default} from './upload.page.js'
+export {default} from '@/views/upload/index.js'

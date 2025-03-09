@@ -1,1 +1,1 @@
-export {default} from './summary.js'
+export {default} from '@/views/summary/index.js'

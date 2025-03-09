@@ -1,3 +1,4 @@
+'use client'
 import useConsolidatedReport from '@/hooks/useConsolidatedReport'
 import useNavigate from '@/hooks/useNavigate'
 

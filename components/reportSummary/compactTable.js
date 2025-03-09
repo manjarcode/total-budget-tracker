@@ -1,6 +1,8 @@
+'use client'
 import {Typography} from '@mui/material'
 import style from './compactTable.module.css'
 import PropTypes from 'prop-types'
+
 export default function CompactTable({reportSummary}) {
   return (
     <table className={style.table}>
