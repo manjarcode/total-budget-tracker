@@ -1,5 +1,6 @@
 import CompactTable from "./compactTable"
 import style from './index.module.css'
+import PropTypes from 'prop-types'
 
 export default function ReportSummary({reportSummary}) {
   return (
@@ -7,4 +8,8 @@ export default function ReportSummary({reportSummary}) {
       <CompactTable reportSummary={reportSummary} />
     </div>
   )
+}
+
+ReportSummary.propTypes = {
+  reportSummary: PropTypes.object
 }

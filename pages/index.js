@@ -1,8 +1,8 @@
-"use client";
+"use client"
 import { Button } from '@mui/material'
 import RootLayout from '@/app/layout'
 
-import ReportList from '@/components/reportList/reportList';
+import ReportList from '@/components/reportList/reportList'
 import ViewModel from './index.viewModel'
 import { Text } from 'manjark'
 

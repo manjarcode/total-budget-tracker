@@ -1,10 +1,11 @@
-import Head from 'next/head';
+import Head from 'next/head'
 import {CacheProvider} from '@emotion/react'
 import {Box, CssBaseline, ThemeProvider} from '@mui/material'
 import "manjark/dist/index.css"
 import createEmotionCache from './emotionCache.js'
 import {theme} from './theme.js'
 import style from './layout.module.css'
+import PropTypes from 'prop-types'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -29,4 +30,10 @@ export default function RootLayout(props) {
       </ThemeProvider>
     </CacheProvider>
   )
+}
+
+RootLayout.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+  emotionCache: PropTypes.object
 }

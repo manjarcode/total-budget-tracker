@@ -1,8 +1,8 @@
 import RootLayout from "@/app/layout"
 import ReportSummary from "@/components/reportSummary"
 import ViewModel from "./summary.viewModel"
-import ReportChart from "@/components/reportChart/reportChart";
-import { Box } from "@mui/material";
+import ReportChart from "@/components/reportChart/reportChart"
+import { Box } from "@mui/material"
 
 export default function ReportSummay() {
   const viewModel = ViewModel()

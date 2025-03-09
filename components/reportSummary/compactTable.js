@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material"
 import style from './compactTable.module.css'
+import PropTypes from 'prop-types'
 export default function CompactTable({reportSummary}) {
   return( 
     <table className={style.table}>
@@ -27,6 +28,16 @@ export default function CompactTable({reportSummary}) {
     </table>)
 }
 
-const Td = ({children}) => {
-  return <td><Typography>{children}</Typography></td>
+const Td = props => {
+  return <td><Typography {...props} /></td>
+}
+
+CompactTable.propTypes = {
+  reportSummary: PropTypes.shape({
+    items: PropTypes.array,
+    summary: PropTypes.shape({
+      total: PropTypes.number,
+      budget: PropTypes.number
+    })
+  })
 }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import cx from 'classnames'
 import {Box, Typography} from '@mui/material'
-import IconButton from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import style from './index.module.css'

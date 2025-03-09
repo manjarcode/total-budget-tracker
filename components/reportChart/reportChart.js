@@ -3,10 +3,12 @@ import {
   CategoryScale,
   LinearScale,
   BarElement
-} from 'chart.js';
-import ViewModel from './reportChart.viewModel';
-import { Bar } from 'react-chartjs-2';
-import style from './reportChart.module.css';
+} from 'chart.js'
+import ViewModel from './reportChart.viewModel'
+import { Bar } from 'react-chartjs-2'
+import style from './reportChart.module.css'
+import PropTypes from 'prop-types'
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,4 +23,8 @@ export default function ReportChart({reportSummary}) {
       {viewModel.hasData && <Bar className={style.container} data={viewModel.dataset} /> }
     </>
   )
+}
+
+ReportChart.propTypes = {
+  reportSummary: PropTypes.array
 }

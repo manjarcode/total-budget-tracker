@@ -33,7 +33,6 @@
     "backend"
   ],
   "devDependencies": {
-    "@s-ui/lint": "^4.30.0",
     "@types/node": "20.2.5",
     "@types/react": "18.2.9"
   },

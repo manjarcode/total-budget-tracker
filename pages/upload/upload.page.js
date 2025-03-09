@@ -20,7 +20,7 @@ export default function UploadPage() {
       {isFileUploaded && 
       <>
         <p>Fichero: {filename}</p>
-        <ReportForm expenses={expenses} />
+        <ReportForm expenses={expenses}/>
       </>}
     </RootLayout>
   )

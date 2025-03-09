@@ -1,10 +1,11 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material"
 
 import CategorizeSelector from '../../categorySelector/index.js'
 import SubcategorySelector from '../../subcategorySelector/index.js'
 
 import ViewModel from './addTransactionForm.viewModel.js'
 import style from './addTransactionForm.module.css'
+import PropTypes from 'prop-types'
 
 export default function AddTransactionForm({reportId, isOpen, onClose}) {
 
@@ -55,4 +56,10 @@ export default function AddTransactionForm({reportId, isOpen, onClose}) {
       </DialogContent>
     </Dialog>
   )
+}
+
+AddTransactionForm.propTypes = { 
+  reportId: PropTypes.string,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func
 }
