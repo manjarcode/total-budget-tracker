@@ -1,8 +1,7 @@
-import useCreateReport from "@/hooks/useCreateReport"
-import useNavigate from "@/hooks/useNavigate"
+import useCreateReport from '@/hooks/useCreateReport'
+import useNavigate from '@/hooks/useNavigate'
 import {v4 as uuid} from 'uuid'
 import {useState} from 'react'
-
 
 export function ViewModel({expenses}) {
   const {create} = useCreateReport()
@@ -11,13 +10,13 @@ export function ViewModel({expenses}) {
 
   const [name, setName] = useState('patata')
   const [yermon, setYermon] = useState('202409')
-  
+
   const expenseCount = expenses?.length || 0
 
-  const handleNameChange = (event) => {
+  const handleNameChange = event => {
     setName(event.target.value)
   }
-  const handleYermonChange = (event) => {
+  const handleYermonChange = event => {
     setYermon(event.target.value)
   }
 
@@ -28,6 +27,13 @@ export function ViewModel({expenses}) {
 
     navigate.toConsolidateReport(reportId)
   }
-  
-  return {expenseCount, createReport, name, handleNameChange, yermon, handleYermonChange}
+
+  return {
+    expenseCount,
+    createReport,
+    name,
+    handleNameChange,
+    yermon,
+    handleYermonChange
+  }
 }

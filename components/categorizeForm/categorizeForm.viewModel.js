@@ -49,6 +49,6 @@ export default function ViewModel({expense, categories, onSave, onClose}) {
     formatDate,
     setSubcategory,
     handleChangeCategory,
-    handleSubmit,
+    handleSubmit
   }
 }

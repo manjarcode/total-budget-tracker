@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react"
-import { colors } from "./colors"
+import {useState, useEffect} from 'react'
+import {colors} from './colors'
 
 export default function ViewModel({reportSummary}) {
   const [dataset, setDataset] = useState({})
 
   const hasData = dataset?.labels?.length > 0
 
-  useEffect(()=> {
+  useEffect(() => {
     if (reportSummary?.length < 0) return
 
     const dataset = {
@@ -16,8 +16,8 @@ export default function ViewModel({reportSummary}) {
           label: 'Gastos',
           data: reportSummary.map(item => item.total),
           backgroundColor: colors
-        },
-      ],
+        }
+      ]
     }
 
     setDataset(dataset)

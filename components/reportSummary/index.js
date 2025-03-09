@@ -1,4 +1,4 @@
-import CompactTable from "./compactTable"
+import CompactTable from './compactTable'
 import style from './index.module.css'
 import PropTypes from 'prop-types'
 

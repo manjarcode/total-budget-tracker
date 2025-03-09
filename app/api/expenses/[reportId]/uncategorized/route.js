@@ -4,9 +4,7 @@ import DI, {Types} from 'total-budget-tracker-backend'
 export async function GET(request, {params}) {
   const {reportId} = params
 
-  const usecase = DI.get(
-    Types.UseCases.ListUncategorizedExpensesUseCase
-  )
+  const usecase = DI.get(Types.UseCases.ListUncategorizedExpensesUseCase)
 
   const data = await usecase.execute(reportId)
 

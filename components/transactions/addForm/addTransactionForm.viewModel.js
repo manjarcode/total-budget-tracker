@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import {useState} from 'react'
 
 import useCategoriesFilter from '@/hooks/useCategoriesFilter'
 import useSaveExpense from '@/hooks/useSaveExpense'
 import useListCategories from '@/hooks/useListCategories.js'
-import { parse } from 'date-fns'
+import {parse} from 'date-fns'
 
 export default function ViewModel({reportId, onClose}) {
   const [description, setDescription] = useState()
@@ -12,7 +12,8 @@ export default function ViewModel({reportId, onClose}) {
 
   const categories = useListCategories()
   const {createExpense} = useSaveExpense()
-  const {category, subcategory, subcategories, setCategory, setSubcategory } = useCategoriesFilter({categories})
+  const {category, subcategory, subcategories, setCategory, setSubcategory} =
+    useCategoriesFilter({categories})
 
   const handleSubmit = () => {
     const parsedDate = parse(date, 'dd/MM/yyyy', new Date())

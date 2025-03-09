@@ -1,7 +1,7 @@
 import CategorizeForm from '@/components/categorizeForm/index.js'
 import ExpenseTable from '@/components/expenseTable/index.js'
 import useListExpenses from '@/hooks/useListExpenses.js'
-import { Box, Button, Typography } from '@mui/material'
+import {Box, Button, Typography} from '@mui/material'
 import useNavigate from '@/hooks/useNavigate'
 import RootLayout from '@/app/layout'
 import ViewModel from './edit.viewModel'
@@ -13,7 +13,10 @@ export default function EditReport() {
   const navigate = useNavigate()
   const reportId = navigate.query.reportId
 
-  const {expenses, refetch, isLoading} = useListExpenses(reportId, 'categorized')
+  const {expenses, refetch, isLoading} = useListExpenses(
+    reportId,
+    'categorized'
+  )
 
   return (
     <RootLayout title="Editar Informe">
@@ -31,10 +34,10 @@ export default function EditReport() {
           refetch()
         }}
       />
-      <AddTransactionForm 
+      <AddTransactionForm
         reportId={reportId}
-        isOpen={viewModel.isModalOpen} 
-        onClose= {viewModel.onCloseModal}        
+        isOpen={viewModel.isModalOpen}
+        onClose={viewModel.onCloseModal}
       />
     </RootLayout>
   )

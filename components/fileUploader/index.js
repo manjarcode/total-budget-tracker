@@ -33,7 +33,9 @@ export default function FileUploader({onFileUpload}) {
         className={style.dropzone}
       >
         <CloudUploadIcon className={style.icon} />
-        <Typography variant="body1">Arrastra y suelta un archivo aquí, o haz clic para seleccionar uno</Typography>
+        <Typography variant="body1">
+          Arrastra y suelta un archivo aquí, o haz clic para seleccionar uno
+        </Typography>
       </Box>
     </div>
   )

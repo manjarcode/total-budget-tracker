@@ -8,7 +8,7 @@ export default function ViewModel() {
   const handleEditReport = reportId => {
     navigate.toEditReport(reportId)
   }
-  
+
   const handleSummaryReport = reportId => {
     navigate.toReportSummary(reportId)
   }

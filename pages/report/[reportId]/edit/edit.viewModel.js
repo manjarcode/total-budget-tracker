@@ -1,4 +1,4 @@
-import { useState } from "react"
+import {useState} from 'react'
 
 export default function ViewModel() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -9,7 +9,7 @@ export default function ViewModel() {
 
   const onCloseModal = () => {
     setIsModalOpen(false)
-  } 
+  }
 
   return {
     isModalOpen,

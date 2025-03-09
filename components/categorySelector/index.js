@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types'
 
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup
+} from '@mui/material'
 
 export default function CategorySelector({categories, value, onChange}) {
   return (
@@ -8,10 +14,17 @@ export default function CategorySelector({categories, value, onChange}) {
       <FormLabel>Categoría</FormLabel>
       <RadioGroup
         value={value}
-        onChange={event => { onChange(event.target.value) }}
+        onChange={event => {
+          onChange(event.target.value)
+        }}
       >
         {categories.map(item => (
-          <FormControlLabel key={item.name} value={item.name} control={<Radio />} label={item.name} />
+          <FormControlLabel
+            key={item.name}
+            value={item.name}
+            control={<Radio />}
+            label={item.name}
+          />
         ))}
       </RadioGroup>
     </FormControl>

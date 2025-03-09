@@ -28,33 +28,35 @@ export default function ExpenseTable({
         />
       )}
       {viewModel.displayLoader && <LinearProgress />}
-      {viewModel.hasExpenses && 
-        <table className={cx(style.table, {[style.loading]: viewModel.displayLoader})}>
-          {viewModel.expenses && viewModel.expenses.map(expense => (
-            <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
-              <td>
-                <Typography variant="body1">
-                  {viewModel.formatDate(expense.date)}
-                </Typography>
-              </td>
-              <td>
-                <Typography variant="body1">
-                  {expense.description}
-                </Typography>    
-              </td>
-              <td>
-                <Typography variant="body1">
-                  {expense.amount}
-                </Typography>
-              </td>
-              <td>
-                <IconButton >
-                  <DeleteIcon onClick={viewModel.handleRemove(expense)} />
-                </IconButton>
-              </td>
-            </tr>
-          ))}
-      </table>}
+      {viewModel.hasExpenses && (
+        <table
+          className={cx(style.table, {
+            [style.loading]: viewModel.displayLoader
+          })}
+        >
+          {viewModel.expenses &&
+            viewModel.expenses.map(expense => (
+              <tr key={expense.id} onClick={viewModel.handleRowClick(expense)}>
+                <td>
+                  <Typography variant="body1">
+                    {viewModel.formatDate(expense.date)}
+                  </Typography>
+                </td>
+                <td>
+                  <Typography variant="body1">{expense.description}</Typography>
+                </td>
+                <td>
+                  <Typography variant="body1">{expense.amount}</Typography>
+                </td>
+                <td>
+                  <IconButton>
+                    <DeleteIcon onClick={viewModel.handleRemove(expense)} />
+                  </IconButton>
+                </td>
+              </tr>
+            ))}
+        </table>
+      )}
     </Box>
   )
 }

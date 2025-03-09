@@ -1,5 +1,5 @@
-import useConsolidatedReport from "@/hooks/useConsolidatedReport"
-import useNavigate from "@/hooks/useNavigate"
+import useConsolidatedReport from '@/hooks/useConsolidatedReport'
+import useNavigate from '@/hooks/useNavigate'
 
 export default function ViewModel() {
   const navigate = useNavigate()

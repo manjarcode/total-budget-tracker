@@ -16,7 +16,7 @@ export async function POST(request) {
 
   const reportId = uuid()
   const useCase = DI.get(Types.UseCases.SaveDocumentUseCase)
-    
+
   const expenses = await useCase.execute(reportId, buffer)
 
   return NextResponse.json({

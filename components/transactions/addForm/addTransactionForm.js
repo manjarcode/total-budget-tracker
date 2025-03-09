@@ -1,4 +1,12 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material"
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField
+} from '@mui/material'
 
 import CategorizeSelector from '../../categorySelector/index.js'
 import SubcategorySelector from '../../subcategorySelector/index.js'
@@ -8,7 +16,6 @@ import style from './addTransactionForm.module.css'
 import PropTypes from 'prop-types'
 
 export default function AddTransactionForm({reportId, isOpen, onClose}) {
-
   const viewModel = ViewModel({reportId, onClose})
   return (
     <Dialog open={isOpen} onClose={onClose}>
@@ -18,20 +25,23 @@ export default function AddTransactionForm({reportId, isOpen, onClose}) {
           <form onSubmit={viewModel.handleSubmit}>
             <Box sx={{mt: 1, mb: 3}}>
               <TextField
-                label="Nombre" 
-                variant="outlined" 
-                value={viewModel.description} 
-                onChange={viewModel.handleChangeDescription} />
+                label="Nombre"
+                variant="outlined"
+                value={viewModel.description}
+                onChange={viewModel.handleChangeDescription}
+              />
               <TextField
-                label="Cantidad" 
-                variant="outlined" 
-                value={viewModel.ammount} 
-                onChange={viewModel.handleChangeAmmount} />
+                label="Cantidad"
+                variant="outlined"
+                value={viewModel.ammount}
+                onChange={viewModel.handleChangeAmmount}
+              />
               <TextField
-                label="Fecha" 
-                variant="outlined" 
-                value={viewModel.date} 
-                onChange={viewModel.handleChangeDate} />
+                label="Fecha"
+                variant="outlined"
+                value={viewModel.date}
+                onChange={viewModel.handleChangeDate}
+              />
             </Box>
             <Box>
               <CategorizeSelector
@@ -58,7 +68,7 @@ export default function AddTransactionForm({reportId, isOpen, onClose}) {
   )
 }
 
-AddTransactionForm.propTypes = { 
+AddTransactionForm.propTypes = {
   reportId: PropTypes.string,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func

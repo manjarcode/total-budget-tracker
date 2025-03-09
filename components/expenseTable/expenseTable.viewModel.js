@@ -45,8 +45,8 @@ export default function ViewModel({expenses, isLoading, onChange}) {
 
   return {
     expenses,
-    showForm, 
-    updatingExpense, 
+    showForm,
+    updatingExpense,
     categories,
     displayLoader,
     isModalOpen,

@@ -21,7 +21,6 @@ export default function CategorizeForm({
   onClose,
   categories
 }) {
- 
   const viewModel = ViewModel({expense, categories, onSave, onClose})
   return (
     <Dialog open={isOpen} onClose={onClose}>
