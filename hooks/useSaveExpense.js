@@ -1,5 +1,4 @@
 export default function useExpenses() {
-
   const createExpense = expense => {
     const url = `/api/expenses`
     return fetch(url, {

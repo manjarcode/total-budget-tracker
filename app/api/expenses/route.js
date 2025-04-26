@@ -12,7 +12,7 @@ export async function PUT(request) {
 }
 
 export async function POST(request) {
-  const {reportId, date, description, ammount, category, subcategory} =
+  const {reportId, date, description, ammount, type, category, subcategory} =
     await request.json()
 
   const useCase = DI.get(Types.UseCases.Transactions.CreateExpenseUseCase)
@@ -22,6 +22,7 @@ export async function POST(request) {
     new Date(date),
     description,
     ammount,
+    type,
     category,
     subcategory
   )

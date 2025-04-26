@@ -18,10 +18,12 @@ export default class CreateExpenseUseCase {
     date: Date, 
     description: string, 
     amount: number,
+    type: string,
     category: string,
     subcategory: string): Promise<void> 
   {
-    const expense = new Expense(reportId, date, description, amount, category, subcategory)
+    const realAmount = type === "expense" ? -Math.abs(amount) : Math.abs(amount)
+    const expense = new Expense(reportId, date, description, realAmount, category, subcategory)
     await this.expenseRepository.create(expense)
   }
 }

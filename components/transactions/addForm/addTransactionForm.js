@@ -4,8 +4,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  TextField
+  DialogTitle
 } from '@mui/material'
 
 import CategorizeSelector from '../../categorySelector/index.js'
@@ -14,6 +13,7 @@ import SubcategorySelector from '../../subcategorySelector/index.js'
 import ViewModel from './addTransactionForm.viewModel.js'
 import style from './addTransactionForm.module.css'
 import PropTypes from 'prop-types'
+import {Textbox, ToggleGroup} from 'manjark'
 
 export default function AddTransactionForm({reportId, isOpen, onClose}) {
   const viewModel = ViewModel({reportId, onClose})
@@ -24,24 +24,33 @@ export default function AddTransactionForm({reportId, isOpen, onClose}) {
         <Box className={style.modal}>
           <form onSubmit={viewModel.handleSubmit}>
             <Box sx={{mt: 1, mb: 3}}>
-              <TextField
-                label="Nombre"
+              <Textbox
+                label="Nombre:"
                 variant="outlined"
                 value={viewModel.description}
                 onChange={viewModel.handleChangeDescription}
               />
-              <TextField
-                label="Cantidad"
+              <Textbox
+                label="Cantidad:"
                 variant="outlined"
+                suffix="€"
                 value={viewModel.ammount}
                 onChange={viewModel.handleChangeAmmount}
               />
-              <TextField
-                label="Fecha"
+              <Textbox
+                label="Fecha:"
                 variant="outlined"
                 value={viewModel.date}
                 onChange={viewModel.handleChangeDate}
               />
+              <ToggleGroup
+                label="Tipo:"
+                onChange={viewModel.handleChangeType}
+                value={viewModel.type}
+              >
+                <ToggleGroup.Item value="expense">Gasto</ToggleGroup.Item>
+                <ToggleGroup.Item value="income">Ingreso</ToggleGroup.Item>
+              </ToggleGroup>
             </Box>
             <Box>
               <CategorizeSelector

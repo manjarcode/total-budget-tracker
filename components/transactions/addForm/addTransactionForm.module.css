@@ -1,6 +1,6 @@
 .modal {
-  min-width: 550px;
-  min-height: 400px;
+  min-width: 500px;
+  min-height: 500px;
 }
 
 .actions {
@@ -8,4 +8,8 @@
   bottom: 0;
   right: 0;
   padding: 24px;
+}
+
+.wFull {
+  width: 100%;
 }
