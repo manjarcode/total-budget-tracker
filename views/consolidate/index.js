@@ -1,9 +1,9 @@
 import CategorizeForm from '@/components/categorizeForm/index.js'
 import ExpenseTable from '@/components/expenseTable/index.js'
 import useListExpenses from '@/hooks/useListExpenses.js'
-import {Typography} from '@mui/material'
 import useNavigate from '@/hooks/useNavigate'
 import RootLayout from '@/app/layout'
+import Heading from '@/components/heading/heading'
 
 export default function ConsolidateReport() {
   const navigate = useNavigate()
@@ -15,8 +15,10 @@ export default function ConsolidateReport() {
   )
 
   return (
-    <RootLayout>
-      <Typography variant="h4">Informe</Typography>
+    <RootLayout title="Gastos pendientes de categorizar">
+      <Heading>
+        <Heading.Title>Gastos pendientes de categorizar</Heading.Title>
+      </Heading>
       <ExpenseTable
         expenses={expenses}
         categorizeForm={CategorizeForm}

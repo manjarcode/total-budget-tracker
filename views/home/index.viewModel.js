@@ -3,7 +3,7 @@ import useReports from '@/hooks/useReports.js'
 
 export default function ViewModel() {
   const navigate = useNavigate()
-  const {reports, remove} = useReports()
+  const {reports, isLoading, remove} = useReports()
 
   const handleEditReport = reportId => {
     navigate.toEditReport(reportId)
@@ -19,6 +19,7 @@ export default function ViewModel() {
 
   return {
     reports,
+    isLoading,
     handleEditReport,
     handleSummaryReport,
     handleRemoveReport
