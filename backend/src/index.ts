@@ -20,6 +20,7 @@ import RemoveReportUseCase from "./application/removeReportUseCase.js";
 import BBVADocumentRepository from "./infrastructure/documents/BBVADocumentRepository.js";
 import RemoveExpenseUseCase from "./application/removeExpenseUseCase.js";
 import CreateExpenseUseCase from "./application/transactions/createExpenseUseCase.js";
+import CategoryMappingRepository from "./infrastructure/categoryMappings/CategoryMappingRepository.js";
 
 const DI = new Container()
 
@@ -27,6 +28,7 @@ DI.bind<DynamoDbAdapterFactory>(Types.DynamoDbAdapterFactory).to(DynamoDbAdapter
 DI.bind<ExpenseMapper>(Types.Mappers.ExpenseMapper).to(ExpenseMapper)
 
 DI.bind<CategoryRepository>(Types.Repositories.CategoryRepository).to(CategoryRepository)
+DI.bind<CategoryMappingRepository>(Types.Repositories.CategoryMappingRepository).to(CategoryMappingRepository)
 DI.bind<ExcelDocumentRepository>(Types.Repositories.ExcelDocumentRepository).to(ExcelDocumentRepository)
 DI.bind<BBVADocumentRepository>(Types.Repositories.BBVADocumentRepository).to(BBVADocumentRepository)
 DI.bind<ExpenseRepository>(Types.Repositories.ExpenseRepository).to(ExpenseRepository)

@@ -1,15 +1,15 @@
-import CreateExpenseUseCase from "./application/transactions/createExpenseUseCase"
-
 const Types = {
   Mappers: {
     ExpenseMapper: Symbol("ExpenseMapper"),
   },
   Repositories: {
-    ReportRepository: Symbol("ReportRepository"),
-    ExcelDocumentRepository: Symbol("ExcelDocumentRepository"),
-    BBVADocumentRepository: Symbol("BBVADocumentRepository"),
-    ExpenseRepository: Symbol("ExpenseRepository"),
     CategoryRepository: Symbol("CategoryRepository"),
+    CategoryMappingRepository: Symbol("CategoryMappingRepository"),
+    BBVADocumentRepository: Symbol("BBVADocumentRepository"),
+    ExcelDocumentRepository: Symbol("ExcelDocumentRepository"),
+    ExpenseRepository: Symbol("ExpenseRepository"),
+    ReportRepository: Symbol("ReportRepository"),
+
   },
   Services: {
     ReportService: Symbol("ReportService"),
