@@ -46,6 +46,9 @@ export default function ExpenseTable({
                   <Typography variant="body1">{expense.description}</Typography>
                 </td>
                 <td>
+                  <Typography variant="body1">{expense.category}</Typography>
+                </td>
+                <td>
                   <Typography variant="body1">{expense.amount}</Typography>
                 </td>
                 <td>
