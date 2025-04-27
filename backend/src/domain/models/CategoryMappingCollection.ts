@@ -9,8 +9,7 @@ export default class CategoryMappingCollection {
   }
 
   get(description: string): CategoryMapping | null {
-    console.log('BUSCANDO: DESCRIPTION', description, 'MAPPINGS', this.categoryMappings)
-    const mapping = this.categoryMappings.find(mapping => mapping.name === description)
+    const mapping = this.categoryMappings.find(mapping => mapping.description === description)
     return mapping ? mapping : null
   }
 }

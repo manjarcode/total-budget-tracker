@@ -1,10 +1,12 @@
 export default class CategoryMapping {
-  name: string
+  id: string
+  description: string
   category: string
   subcategory: string
 
-  constructor(name: string, category: string, subcategory: string) {
-    this.name = name
+  constructor(id:string, description: string, category: string, subcategory: string) {
+    this.id = id
+    this.description = description
     this.category = category
     this.subcategory = subcategory
   }
