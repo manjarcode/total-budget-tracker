@@ -66,6 +66,7 @@ export default function AddTransactionForm({reportId, isOpen, onClose}) {
             </Box>
             <DialogActions className={style.actions}>
               <Button onClick={onClose}>Cancelar</Button>
+              <Button onClick={viewModel.handleExtra}>Añadir otro</Button>
               <Button type="submit" variant="contained" color="primary">
                 Guardar
               </Button>

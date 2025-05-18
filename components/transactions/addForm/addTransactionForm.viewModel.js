@@ -16,22 +16,17 @@ export default function ViewModel({reportId, onClose}) {
   const {category, subcategory, subcategories, setCategory, setSubcategory} =
     useCategoriesFilter({categories})
 
-  const handleSubmit = () => {
-    const parsedDate = parse(date, 'dd/MM/yyyy', new Date())
-
-    const expense = {
-      reportId,
-      description,
-      ammount,
-      type,
-      date: parsedDate,
-      category,
-      subcategory
-    }
-
-    createExpense(expense).then(onClose)
+  const handleSubmit = async () => {
+    await saveTransaction()
+    onClose()
   }
 
+  const handleExtra = async () => {
+    await saveTransaction()
+    setDescription('')
+    setAmmount('')
+    setDate('')
+  }
   const handleChangeCategory = value => {
     setCategory(value)
   }
@@ -53,12 +48,27 @@ export default function ViewModel({reportId, onClose}) {
   }
 
   const handleChangeType = ({value}) => {
-    console.log('value', value)
     setType(value)
   }
 
+  const saveTransaction = () => {
+    const parsedDate = parse(date, 'dd/MM/yyyy', new Date())
+
+    const transaction = {
+      reportId,
+      description,
+      ammount,
+      type,
+      date: parsedDate,
+      category,
+      subcategory
+    }
+
+    return createExpense(transaction)
+  }
+
   return {
-    name: description,
+    description,
     ammount,
     date,
     categories,
@@ -70,6 +80,7 @@ export default function ViewModel({reportId, onClose}) {
     handleChangeAmmount,
     handleChangeDate,
     handleChangeType,
-    handleSubmit
+    handleSubmit,
+    handleExtra
   }
 }
