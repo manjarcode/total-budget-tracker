@@ -13,8 +13,10 @@ export async function POST(request) {
 
   const body = await request.json()
 
-  const {reportId, name, yermon, dateRange, expenses} = body
+  const {reportId, dateRange, expenses} = body
 
+  console.log('Creating report with ID:', reportId, dateRange)
+  console.log('Number of expenses:', expenses.length)
   expenses.forEach(expense => {
     expense.date = new Date(expense.date)
   })
@@ -22,7 +24,7 @@ export async function POST(request) {
   dateRange.start = new Date(dateRange.start)
   dateRange.end = new Date(dateRange.end)
 
-  await usecase.execute(reportId, name, yermon, dateRange, expenses)
+  await usecase.execute(reportId, dateRange, expenses)
 
   return NextResponse.json({})
 }

@@ -24,7 +24,7 @@ export default class CreateReportUseCase {
     this.categoryMappingRepository = categoryMappingRepository
   }
 
-  async execute(reportId: string, name: string, yermon: string, dateRangeType: DateRangeType, expenses: Expense[]) {
+  async execute(reportId: string, dateRangeType: DateRangeType, expenses: Expense[]) {
     const dateRange = new DateRange(dateRangeType)
 
     await this.reportRepository.add(reportId, dateRange.name(), dateRange.id())

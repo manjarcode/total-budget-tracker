@@ -11,17 +11,7 @@ export function ViewModel({expenses}) {
 
   const navigate = useNavigate()
 
-  const [name, setName] = useState('patata')
-  const [yermon, setYermon] = useState('202409')
-
   const expenseCount = expenses?.length || 0
-
-  const handleNameChange = event => {
-    setName(event.target.value)
-  }
-  const handleYermonChange = event => {
-    setYermon(event.target.value)
-  }
 
   const handleDateRangeChange = newDateRange => {
     setDateRange(newDateRange)
@@ -30,7 +20,7 @@ export function ViewModel({expenses}) {
   const createReport = async () => {
     const reportId = uuid()
 
-    await create(reportId, name, yermon, dateRange, expenses)
+    await create(reportId, dateRange, expenses)
 
     navigate.toConsolidateReport(reportId)
   }
@@ -38,10 +28,6 @@ export function ViewModel({expenses}) {
   return {
     expenseCount,
     createReport,
-    name,
-    handleNameChange,
-    yermon,
-    handleYermonChange,
     dateRange,
     handleDateRangeChange
   }
