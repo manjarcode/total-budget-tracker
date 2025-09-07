@@ -1,10 +1,11 @@
 import { injectable, inject } from "inversify"
-import Types from "../types.js"
+import Types, { DateRangeType } from "../types.js"
 import ReportRepository from "../infrastructure/reports/ReportRepository.js"
 import Expense from "../domain/models/Expense.js"
 import ExpenseRepository from "../infrastructure/expenses/ExpenseRepository.js"
 import CategoryMappingRepository from "../infrastructure/categoryMappings/CategoryMappingRepository.js"
 import CategoryMappingCollection from "../domain/models/CategoryMappingCollection.js"
+import DateRange from "../domain/models/DateRange.js"
 
 @injectable()
 export default class CreateReportUseCase {
@@ -23,14 +24,14 @@ export default class CreateReportUseCase {
     this.categoryMappingRepository = categoryMappingRepository
   }
 
-  async execute(reportId: string, name: string, yermon: string, expenses: Expense[]) {
+  async execute(reportId: string, name: string, yermon: string, dateRangeType: DateRangeType, expenses: Expense[]) {
+    const dateRange = new DateRange(dateRangeType)
 
-    //TODO: Manejo de errores por aquí...
-
-    await this.reportRepository.add(reportId, name, yermon)
+    await this.reportRepository.add(reportId, dateRange.name(), dateRange.id())
 
     const categoryMappingCollection = await this.categoryMappingRepository.list()
-   
+
+    expenses = expenses.filter(expense => expense.date >= dateRangeType.start && expense.date <= dateRangeType.end)
     expenses.forEach(e => e.reportId = reportId)
 
     this.mapCategories(expenses, categoryMappingCollection)
@@ -46,7 +47,6 @@ export default class CreateReportUseCase {
         continue
       }
 
-      console.log('FOUND MAPPING', mapping)
       expense.category = mapping.category
       expense.subcategory = mapping.subcategory
     }

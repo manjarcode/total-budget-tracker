@@ -32,4 +32,9 @@ const Types = {
   DynamoDbAdapterFactory: Symbol("DynamoDbAdapter"),
 }
 
+export type DateRangeType = {
+  start: Date,
+  end: Date
+}
+
 export default Types

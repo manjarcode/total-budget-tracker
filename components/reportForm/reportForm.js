@@ -1,5 +1,5 @@
 import {Box} from '@mui/material'
-import {Text, Textbox} from 'manjark'
+import {DateRange, Text, Textbox} from 'manjark'
 import Button from '@mui/material/Button'
 import {ViewModel} from './reportForm.viewModel'
 
@@ -15,6 +15,12 @@ export default function ReportForm(props) {
           label="Nombre del informe"
           value={viewModel.name}
           onChange={viewModel.handleNameChange}
+        />
+      </Box>
+      <Box>
+        <DateRange
+          value={viewModel.dateRange}
+          onChange={viewModel.handleDateRangeChange}
         />
       </Box>
       <Box>

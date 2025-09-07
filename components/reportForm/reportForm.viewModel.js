@@ -2,9 +2,12 @@ import useCreateReport from '@/hooks/useCreateReport'
 import useNavigate from '@/hooks/useNavigate'
 import {v4 as uuid} from 'uuid'
 import {useState} from 'react'
+import {initialDateRange} from 'manjark/dist/index.es'
 
 export function ViewModel({expenses}) {
   const {create} = useCreateReport()
+
+  const [dateRange, setDateRange] = useState(initialDateRange())
 
   const navigate = useNavigate()
 
@@ -20,10 +23,14 @@ export function ViewModel({expenses}) {
     setYermon(event.target.value)
   }
 
+  const handleDateRangeChange = newDateRange => {
+    setDateRange(newDateRange)
+  }
+
   const createReport = async () => {
     const reportId = uuid()
 
-    await create(reportId, name, yermon, expenses)
+    await create(reportId, name, yermon, dateRange, expenses)
 
     navigate.toConsolidateReport(reportId)
   }
@@ -34,6 +41,8 @@ export function ViewModel({expenses}) {
     name,
     handleNameChange,
     yermon,
-    handleYermonChange
+    handleYermonChange,
+    dateRange,
+    handleDateRangeChange
   }
 }
